@@ -246,6 +246,7 @@
     var _this;
     import StaffPage from '../components/staff_page.vue';
     import VipPage from '../components/vip_page.vue';
+	import NameListPage from '../components/name_list_page.vue';
 
     export default {
 	    name: "home",
@@ -480,5 +481,17 @@
     span {
 	    text-align: center;
 	    font-family: SquareFont;
+    }
+	@font-face {
+        font-family: 'PingFangSC-Semibold';
+        src: url('../assets/font/PingFang_SC_Semibold.ttf');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'SquareFont';
+        src: url('../assets/font/Square.ttf');
+        font-weight: normal;
+        font-style: normal;
     }
 </style >

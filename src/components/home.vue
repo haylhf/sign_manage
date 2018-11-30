@@ -10,7 +10,7 @@
                     </div >
                 </td >
                 <td style="text-align: center;" >
-                     <el-radio-group v-model="radioMenu" text-color="#FFFFFF" fill="#939393" @change="radioChanged" >
+                     <el-radio-group v-model="radioMenu" text-color="#FFFFFF" fill="#939393" @change="radioChanged" style="font-family: SourceHanSansCN-Medium">
                           <el-radio-button label="部门" ></el-radio-button >
                           <el-radio-button label="签到" ></el-radio-button >
                           <el-radio-button label="名单" ></el-radio-button >
@@ -47,10 +47,10 @@
                         background-position:top;" >
                         <br >
                         <div style="margin-left: 80px;" >
-                            <span style="font-size: 18px;color:#939393;" >签到人数</span >
+                            <span class="textlabel" >签到人数</span >
                             <br >
                             <br >
-                            <span style="font-size: 48px;color:#909090;" >{{getSignIn()}}</span >
+                            <span class="textCount" >{{getSignIn()}}</span >
                         </div >
                     </div >
                 </td >
@@ -65,7 +65,7 @@
                         background-position:top;" >
                         <br >
                         <div style="margin-right: 80px;" >
-                            <span style="font-size: 18px;color:#939393;" >签到率</span >
+                            <span class="textlabel">签到率</span >
                             <br >
                             <br >
                             <span style="font-size: 48px;color:#909090;" >90%</span >
@@ -264,7 +264,7 @@
 			    signInNum: 0,
 			    isShowVIP: false,
 			    showAD: true,
-			    radioMenu: "",
+			    radioMenu: "签到",
 		    }
 	    },
 	    methods: {
@@ -480,7 +480,17 @@
 <style >
     span {
 	    text-align: center;
-	    font-family: SquareFont;
+	    font-family: 'SquareFont';
+    }
+    .textlabel{
+        font-size: 18px;
+        color:#939393;
+        font-family: 'SourceHanSansCN-Medium';
+    }
+    .textCount{
+        font-size: 48px;
+        color:#909090;
+        font-family: 'SquareFont';
     }
 	@font-face {
         font-family: 'PingFangSC-Semibold';

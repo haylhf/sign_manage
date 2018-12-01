@@ -2,11 +2,20 @@
         <!--<img :src="getBgImg()"-->
         <!--style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;"-->
         <!--v-show="!showAD" />-->
-        <table style="width: 100%;height: 100%;background-color:gainsboro;position: fixed;" >
+    <div  style="min-width: 100%;min-height: 100%;position: fixed;">
+        <video :src="getVideoBg()" autoplay muted loop
+            style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;" >
+        </video>
+        <table style="width: 100%;height: 100%;position: fixed;" >
             <tr style="height: 10%" >
-                <td width="20%" style="vertical-align: top;" >
-                    <div style="margin-top: 20px;margin-left: 60px;" >
-                    <img src="../assets/img/logo.png" style="height: 35px;top: 0px; width: 200px;opacity: 0.7" >
+                <td width="30%" style="vertical-align: top;text-align: left" >
+                    <div style="margin-top: 20px;
+                        margin-left: -35px;
+                        background-image: url('../../src/assets/img/line_u_l.png');
+                        background-repeat: no-repeat;
+                        height: 60px;
+                        background-position: bottom;" >
+                    <img src="../assets/img/logo_normal.png" style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;opacity: 0.7" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
@@ -18,13 +27,13 @@
                 </td >
                 <td width="30%" style="text-align: right" >
                     <div style="
-                    float: right;
                     margin-top: 20px;
+                    margin-right: -35px;
                     background-image: url('../../src/assets/img/line_u_r.png');
                         background-repeat: no-repeat;
                         height: 60px;
                         background-position: bottom;" >
-                        <span style="font-size: 42px;color:#ADADAD;margin-right: 80px;" >{{currentTime}}</span >
+                        <span style="font-size: 42px;color:#ADADAD;margin-right: 120px;" >{{currentTime}}</span >
                     </div >
                 </td >
             </tr >
@@ -74,6 +83,7 @@
                 </td >
             </tr >
         </table >
+        </div>
 </template >
 
 <script >
@@ -268,6 +278,11 @@
 		    }
 	    },
 	    methods: {
+            getVideoBg() {
+                var bg = require('../assets/img/signed_bg.mp4');
+                return bg;
+            },
+
 		    btnTest() {
 
 			    var id = Math.round(Math.random() * 1000000);
@@ -439,7 +454,7 @@
 	    mounted: function () {
 		    currentInterval = setInterval(function doAnimation() {
 
-			    _this.currentTime = new Date().format("yyyy年MM月dd日 hh:mm");
+			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm");
 //			    $.ajax({
 //				    url: HOST + "user/getStaffNum",
 //				    type: 'GET',

@@ -2,10 +2,10 @@
         <!--<img :src="getBgImg()"-->
         <!--style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;"-->
         <!--v-show="!showAD" />-->
-    <div  style="min-width: 100%;min-height: 100%;position: fixed;">
+    <div style="min-width: 100%;min-height: 100%;position: fixed;" >
         <video :src="getVideoBg()" autoplay muted loop
-            style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;" >
-        </video>
+               style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;" >
+        </video >
         <table style="width: 100%;height: 100%;position: fixed;" >
             <tr style="height: 10%" >
                 <td width="30%" style="vertical-align: top;text-align: left" >
@@ -17,15 +17,18 @@
                         background-size: 100%;
                         height: 60px;
                         background-position: bottom;" >
-                    <img src="../assets/img/logo_normal.png" style="height: 35px;margin-top: 10px; margin-left: 80px; top: 0px; width: 200px;" >
+                    <img src="../assets/img/logo_normal.png"
+                         style="height: 35px;margin-top: 10px; margin-left: 80px; top: 0px; width: 200px;" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
-                     <el-radio-group v-model="radioMenu" text-color="#FFFFFF" fill="#939393" @change="radioChanged" style="font-family: SourceHanSansCN-Medium">
-                          <el-radio-button label="部门" ></el-radio-button >
-                          <el-radio-button label="签到" ></el-radio-button >
-                          <el-radio-button label="名单" ></el-radio-button >
-                     </el-radio-group >
+                     <!--<el-radio-group v-model="radioMenu" text-color="#FFFFFF" fill="#939393" @change="radioChanged" style="font-family: SourceHanSansCN-Medium">-->
+                     <!--<el-radio-button label="部门" ></el-radio-button >-->
+                     <!--<el-radio-button label="签到" ></el-radio-button >-->
+                     <!--<el-radio-button label="名单" ></el-radio-button >-->
+                     <!--</el-radio-group >-->
+                    <MenuButton ref="menuButton" :menuList="menuList" :activedIndex="curretnIndex"
+                                :menuChanged="onMenuChanged" ></MenuButton >
                 </td >
                 <td width="30%" style="text-align: right" >
                     <div style="
@@ -80,7 +83,7 @@
                         background-position:top;" >
                         <br >
                         <div style="margin-right: 80px;" >
-                            <span class="textlabel">签到率</span >
+                            <span class="textlabel" >签到率</span >
                             <br >
                             <br >
                             <span style="font-size: 48px;color:#909090;" >90%</span >
@@ -89,7 +92,7 @@
                 </td >
             </tr >
         </table >
-        </div>
+        </div >
 </template >
 
 <script >
@@ -262,13 +265,17 @@
     var _this;
     import StaffPage from '../components/staff_page.vue';
     import VipPage from '../components/vip_page.vue';
-	import NameListPage from '../components/name_list_page.vue';
+    import NameListPage from '../components/name_list_page.vue';
+    import MenuButton from '../components/menubutton.vue';
+
 
     export default {
 	    name: "home",
 	    components: {
 		    StaffPage,
 		    VipPage,
+		    MenuButton,
+		    NameListPage,
 	    },
 	    data() {
 		    _this = this;
@@ -281,13 +288,34 @@
 			    isShowVIP: false,
 			    showAD: true,
 			    radioMenu: "签到",
+			    menuList: [
+				    {
+					    key: "0",
+					    text: "部门",
+				    },
+				    {
+					    key: "1",
+					    text: "签到",
+				    },
+				    {
+					    key: "2",
+					    text: "名单",
+				    }
+			    ],
+			    curretnIndex: "0",
 		    }
 	    },
 	    methods: {
-            getVideoBg() {
-                var bg = require('../assets/img/signed_bg.mp4');
-                return bg;
-            },
+		    onMenuChanged(newKey)
+		    {
+			    _this.curretnIndex = newKey;
+			    console.log("selected changed " + newKey);
+		    },
+
+		    getVideoBg() {
+			    var bg = require('../assets/img/signed_bg.mp4');
+			    return bg;
+		    },
 
 		    btnTest() {
 
@@ -503,26 +531,30 @@
 	    text-align: center;
 	    font-family: 'SquareFont';
     }
-    .textlabel{
-        font-size: 18px;
-        color:#939393;
-        font-family: 'SourceHanSansCN-Medium';
+
+    .textlabel {
+	    font-size: 18px;
+	    color: #939393;
+	    font-family: 'SourceHanSansCN-Medium';
     }
-    .textCount{
-        font-size: 48px;
-        color:#909090;
-        font-family: 'SquareFont';
+
+    .textCount {
+	    font-size: 48px;
+	    color: #909090;
+	    font-family: 'SquareFont';
     }
-	@font-face {
-        font-family: 'PingFangSC-Semibold';
-        src: url('../assets/font/PingFang_SC_Semibold.ttf');
-        font-weight: normal;
-        font-style: normal;
-    }
+
     @font-face {
-        font-family: 'SquareFont';
-        src: url('../assets/font/Square.ttf');
-        font-weight: normal;
-        font-style: normal;
+	    font-family: 'PingFangSC-Semibold';
+	    src: url('../assets/font/PingFang_SC_Semibold.ttf');
+	    font-weight: normal;
+	    font-style: normal;
+    }
+
+    @font-face {
+	    font-family: 'SquareFont';
+	    src: url('../assets/font/Square.ttf');
+	    font-weight: normal;
+	    font-style: normal;
     }
 </style >

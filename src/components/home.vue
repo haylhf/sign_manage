@@ -10,12 +10,14 @@
             <tr style="height: 10%" >
                 <td width="30%" style="vertical-align: top;text-align: left" >
                     <div style="margin-top: 20px;
-                        margin-left: -35px;
+                        width: 478px;
+                        float: left;
                         background-image: url('../../src/assets/img/line_u_l.png');
                         background-repeat: no-repeat;
+                        background-size: 100%;
                         height: 60px;
                         background-position: bottom;" >
-                    <img src="../assets/img/logo_normal.png" style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;opacity: 0.7" >
+                    <img src="../assets/img/logo_normal.png" style="height: 35px;margin-top: 10px; margin-left: 80px; top: 0px; width: 200px;" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
@@ -27,13 +29,15 @@
                 </td >
                 <td width="30%" style="text-align: right" >
                     <div style="
-                    margin-top: 20px;
-                    margin-right: -35px;
-                    background-image: url('../../src/assets/img/line_u_r.png');
+                        margin-top: 20px;
+                        width: 478px;
+                        float: right;
+                        background-image: url('../../src/assets/img/line_u_r.png');
                         background-repeat: no-repeat;
+                        background-size: 100%;
                         height: 60px;
                         background-position: bottom;" >
-                        <span style="font-size: 42px;color:#ADADAD;margin-right: 120px;" >{{currentTime}}</span >
+                        <span style="font-size: 42px;color:#ADADAD;margin-right: 80px;" >{{currentTime}}</span >
                     </div >
                 </td >
             </tr >
@@ -46,12 +50,13 @@
                 </td >
             </tr >
             <tr style="height: 10%;" >
-                <td width="20%" style="text-align: left;" >
+                <td width="30%" style="text-align: left;" >
                     <div style="
-                        width: 320px;
+                        width: 318px;
                         float: left;
                         background-image: url('../../src/assets/img/line_b_l.png');
                         background-repeat: no-repeat;
+                        background-size: 100%;
                         height: 100px;
                         background-position:top;" >
                         <br >
@@ -66,10 +71,11 @@
                 <td ></td >
                 <td width="30%" style="text-align: right;" >
                     <div style="
-                        width: 320px;
+                        width: 318px;
                         float: right;
                         background-image: url('../../src/assets/img/line_b_r.png');
                         background-repeat: no-repeat;
+                        background-size: 100%;
                         height: 100px;
                         background-position:top;" >
                         <br >

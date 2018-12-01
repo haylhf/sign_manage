@@ -4,7 +4,7 @@
             <div v-show="bigMode">
                 <el-row style="margin-left: 90px">
                     <el-col :span="1">
-                        <img :src="getLabel()" style="height: 40px;width: 80px">
+                        <img :src="getLabel()" style="height: 40px;width: 36px">
                     </el-col>
                     <el-col :span="5">
                         <div class="department-title">信息工程部</div>
@@ -39,7 +39,7 @@
         },
         methods: {
             getLabel() {
-                return require("../assets/img/department_label.png");
+                return require("../assets/img/icon_department.png");
             }
         },
         computed: {},
@@ -68,7 +68,7 @@
     .department-title {
         font-family: PingFangSC-Semibold, sans-serif;
         height: 50px;
-        margin-left: 36px;
+        margin-left: 16px;
         font-size: 36px;
         color: #959595;
         letter-spacing: 1px;

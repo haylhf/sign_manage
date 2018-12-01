@@ -39,10 +39,6 @@
     export default {
 	    name: "MenuButton",
 	    props: {
-		    activedIndex: {
-			    type: String,
-			    default: ''
-		    },
 		    menuList: {
 			    type: Array,
 			    default: []
@@ -55,6 +51,7 @@
 	    data() {
 		    _this = this;
 		    return {
+                activedIndex: "0",
 			    textSelectedStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",

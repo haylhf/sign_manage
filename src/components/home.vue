@@ -27,7 +27,7 @@
                      <!--<el-radio-button label="签到" ></el-radio-button >-->
                      <!--<el-radio-button label="名单" ></el-radio-button >-->
                      <!--</el-radio-group >-->
-                    <MenuButton ref="menuButton" :menuList="menuList" :activedIndex="curretnIndex"
+                    <MenuButton ref="menuButton" :menuList="menuList"
                                 :menuChanged="onMenuChanged" ></MenuButton >
                 </td >
                 <td width="30%" style="text-align: right" >
@@ -49,6 +49,7 @@
                     <div >
                        <VipPage ref="vipPage" v-show="isShowVIP" ></VipPage >
                        <StaffPage ref="staffPage" v-show="!isShowVIP" ></StaffPage >
+                       <NameListPage v-show="currentIndex == '2'"  ></NameListPage >
                     </div >
                 </td >
             </tr >
@@ -302,13 +303,13 @@
 					    text: "名单",
 				    }
 			    ],
-			    curretnIndex: "0",
+			    currentIndex: "0",
 		    }
 	    },
 	    methods: {
 		    onMenuChanged(newKey)
 		    {
-			    _this.curretnIndex = newKey;
+			    _this.currentIndex = newKey;
 			    console.log("selected changed " + newKey);
 		    },
 

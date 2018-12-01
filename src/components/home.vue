@@ -454,7 +454,7 @@
 	    mounted: function () {
 		    currentInterval = setInterval(function doAnimation() {
 
-			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm");
+			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm:ss");
 //			    $.ajax({
 //				    url: HOST + "user/getStaffNum",
 //				    type: 'GET',

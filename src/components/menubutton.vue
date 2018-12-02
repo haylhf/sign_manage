@@ -55,14 +55,14 @@
 			    textSelectedStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",
-				    "font-family": 'SourceHanSansCN-Bold',
+				    "font-family": 'PingFangSC-Semibold',
 				    "color": "#515151",
                     "opacity": "1"
 			    },
 			    textNormalStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",
-				    "font-family": 'SourceHanSansCN-Bold',
+				    "font-family": 'PingFangSC-Semibold',
 				    "color": "#C1C1C1;",
                     "opacity": "0.7"
                 },

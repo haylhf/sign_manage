@@ -1,6 +1,6 @@
 //Server root address
 var IP = "http://127.0.0.1";
-var HOST = IP + ":8080/";
+var HOST = IP + ":9090/";
 var SYSTEMNAME = "Face";
 var MqttServer = `47.100.9.64`;
 var ServerPort = Number(61623);

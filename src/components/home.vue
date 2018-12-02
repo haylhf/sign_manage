@@ -49,7 +49,7 @@
                     <div >
                        <VipPage ref="vipPage" v-show="isShowVIP" ></VipPage >
                        <StaffPage ref="staffPage" v-show="!isShowVIP" ></StaffPage >
-                       <NameListPage v-show="currentIndex == '2'"  ></NameListPage >
+                       <NameListPage v-if="currentIndex == '2'"  ></NameListPage >
                     </div >
                 </td >
             </tr >

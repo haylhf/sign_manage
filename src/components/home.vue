@@ -67,7 +67,6 @@
                         <div style="margin-left: 80px;" >
                             <span class="textlabel" >签到人数</span >
                             <br >
-                            <br >
                             <span class="textCount" >{{getSignIn()}}</span >
                         </div >
                     </div >
@@ -85,7 +84,6 @@
                         <br >
                         <div style="margin-right: 80px;" >
                             <span class="textlabel" >签到率</span >
-                            <br >
                             <br >
                             <span style="font-size: 48px;color:#909090;" >90%</span >
                         </div >

@@ -3,8 +3,8 @@
         <el-row >
             <el-col :span="12" >
                 <div style="margin-right: 20px;margin-top: 29px;">
-                    <span style="font-size:20px;float: right;color: #8A8A8A; font-family: SourceHanSansCN-Medium;" >{{staffInfo.name}}</span >
-                    <span style="font-size:12px;float: right;color: #8A8A8A;font-family: SourceHanSansCN-Normal;
+                    <span style="font-size:20px;float: right;color: #8A8A8A; font-family: SquareFont;" >{{staffInfo.name}}</span >
+                    <span style="font-size:12px;float: right;color: #8A8A8A;font-family: SquareFont;
                     margin-right: 2px;margin-top: 10px;" >{{staffInfo.departName}}</span >
                 </div >
             </el-col >

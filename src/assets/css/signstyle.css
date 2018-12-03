@@ -20,7 +20,6 @@ ol, ul {
     position: absolute;
 }
 
-
 #img-slider .img {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -35,10 +34,8 @@ ol, ul {
     -ms-box-shadow: 0 1px 0 rgba(204, 205, 206, 5);
     box-shadow: 0 1px 0 rgba(204, 205, 206, 5);
     border: 1px solid #edeeee;
-    background-color: #fff;
     width: 300px;
     height: 600px;
-    position: relative;
 }
 
 #img-slider .img img {
@@ -67,7 +64,6 @@ ol, ul {
     font-size: 200%;
 }
 
-
 #img-slider .img:first-child {
     display: block;
 }
@@ -91,7 +87,6 @@ ol, ul {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     border-color: #fff;
 }
-
 
 .switcher-wrap ul.switcher {
     text-align: center;

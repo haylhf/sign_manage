@@ -25,7 +25,7 @@
 		maxZ: 280,
 		minOpacity: 1.0,
 		maxOpacity: 1.0,
-		minScale: 0.5,
+		minScale: 0.1,
 		maxScale: 1.0,
 		duration: 600,
 		btnNext: null,

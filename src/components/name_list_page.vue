@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <el-row>
         <el-col class="left-panel" :span="16">
-            <div id="div-scroll" v-show="bigMode" style="margin-left: 90px;height: 950px;overflow-y: auto">
+            <div id="div-scroll" v-show="bigMode" style="margin-left: 90px;height: 750px;overflow-y: auto">
                 <div v-for="department in departmentSignData">
                     <el-row style="height: 60px">
                         <el-col :span="1">
@@ -43,8 +43,9 @@
         <el-col class="right-panel" :span="7">
             <div>
                 <img :src="getIconLine()"/>
-                <div style="height: 900px;overflow: hidden">
-                    <TextScroller :text-list="departments" :position-changed="positionChanged" :current-index="calculatedIndex"></TextScroller>
+                <div style="height: 750px;overflow: hidden">
+                    <TextScroller :text-list="departments" :position-changed="positionChanged"
+                                  :current-index="calculatedIndex"></TextScroller>
                 </div>
             </div>
         </el-col>
@@ -192,7 +193,7 @@
             this.fetchTag();
             document.getElementById('div-scroll').addEventListener('scroll', ()=> {
                 for (let i = 0; i < _this.departmentHeightList.length; i++) {
-                    if(document.getElementById('div-scroll').scrollTop < _this.departmentHeightList[i]) {
+                    if (document.getElementById('div-scroll').scrollTop < _this.departmentHeightList[i]) {
                         _this.calculatedIndex = i;
                         console.log("calculatedIndex: " + _this.calculatedIndex + " || " + document.getElementById('div-scroll').scrollTop);
                         break;
@@ -209,13 +210,13 @@
 <style>
     .left-panel {
         margin-left: 30px;
-        margin-top: 90px;
+        margin-top: 60px;
         height: 100%;
     }
 
     .right-panel {
         text-align: right;
-        margin-top: 90px;
+        margin-top: 60px;
         height: 100%;
     }
 

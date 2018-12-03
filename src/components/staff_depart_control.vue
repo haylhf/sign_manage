@@ -1,8 +1,8 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
-    <div style="width: 220px;height: 40px;margin-left: 120px;margin-top: 50px" >
+    <div style="width: 220px;height: 40px;" >
 		<el-row >
 			<el-col :span="8" >
-               <span style="float: left;font-family: SourceHanSansCN-Medium;" >{{departInfo.departName}}</span >
+               <span style="float: left;font-family: 'SourceHanSansCN-Medium';" >{{departInfo.departName}}</span >
 			</el-col >
 			<el-col :span="8" :offset="8" >
                 <span style="float: right;" >{{departInfo.currentValue}}/{{departInfo.totalValue}}</span >
@@ -35,8 +35,7 @@
 	    },
 	    data() {
 		    _this = this;
-		    return {
-		    }
+		    return {}
 	    },
 	    methods: {
 		    getPercent(cValue, tValue)
@@ -62,7 +61,7 @@
 <style >
     span {
 	    text-align: center;
-	    font-family: 'SquareFont';
+	    font-family: 'SourceHanSansCN-Medium';
 	    font-size: 18px;
 	    color: #AEAEAE;
     }

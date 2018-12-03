@@ -46,9 +46,9 @@
             </tr >
             <tr style="height: 80%;" >
                 <td colspan="3" >
-                    <div >
-                       <VipPage ref="vipPage" v-show="isShowVIP" ></VipPage >
-                       <StaffPage ref="staffPage" v-show="!isShowVIP" ></StaffPage >
+                    <div style="margin-top: 0px;">
+                       <VipPage v-if="currentIndex == 0" ref="vipPage" v-show="isShowVIP" ></VipPage >
+                       <StaffPage v-if="currentIndex == 1"  ref="staffPage" v-show="!isShowVIP" ></StaffPage >
                        <NameListPage v-if="currentIndex == '2'"  ></NameListPage >
                     </div >
                 </td >

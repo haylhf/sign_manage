@@ -1,14 +1,12 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
-    <el-row style="height: 50px; margin-top: 5px;" >
+    <el-row style="height: 50px; margin-top: 5px;background-color: #0f0f0f" >
         <el-col :span="12" :offset="8" >
             <div class="form-inline" style="width: 120px;cursor: pointer;float: left"
                  v-for="item in menuList" >
                 <div style="float: left;text-align: left" >
-                    <div style="float: left;text-align: left" >
+                    <div style="float: left;text-align: left;color: #C1C1C1;" >
                         <span :style="item.textStyle" @click="onClickMenu(item.key)" >{{item.text}}</span >
-                        <div v-show="activedIndex==item.key" >
-                            <div class="circleDiv" >
-                            </div >
+                        <div class="circleDiv" v-show="activedIndex==item.key" >
                         </div >
                     </div >
                     <div v-show="item.key!=menuList.length-1"
@@ -51,20 +49,18 @@
 	    data() {
 		    _this = this;
 		    return {
-                activedIndex: "0",
+			    activedIndex: "0",
 			    textSelectedStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",
 				    "font-family": 'PingFangSC-Semibold',
-				    "color": "#515151",
-                    "opacity": "1"
-			    },
+                    "color": "#C1C1C1",
+                },
 			    textNormalStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",
 				    "font-family": 'PingFangSC-Semibold',
-				    "color": "#C1C1C1;",
-                    "opacity": "0.7"
+                    "color": "#515151",
                 },
 
 		    }
@@ -94,18 +90,18 @@
      /*span {*/
      /*text-align: left;*/
      /*font-size: 18px;*/
-     /*font-family: 'SourceHanSansCN-Bold';*/
-     /*color: #515151;*/
+     /*font-family: 'SourceHanSansCN-Semibold';*/
+     /*color: #C1C1C1*/
      /*}*/
 
      .circleDiv {
 	     width: 6px;
-	     height: 6px;
+	     height: 7px;
 	     border: 1px solid #878787;
 	     border-radius: 50%;
 	     background-color: #878787;
 	     text-align: center;
-	     margin-top: 5px;
+	     margin-top: 10px;
 	     margin-left: 15px;
      }
 </style >

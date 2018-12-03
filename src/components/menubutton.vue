@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
-    <el-row style="height: 50px; margin-top: 5px;background-color: #0f0f0f" >
+    <el-row style="height: 50px; margin-top: 5px;" >
         <el-col :span="12" :offset="8" >
             <div class="form-inline" style="width: 120px;cursor: pointer;float: left"
                  v-for="item in menuList" >

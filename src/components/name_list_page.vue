@@ -19,10 +19,10 @@
                     <div>
                         <table>
                             <tr v-for="row in formatToMatrix(department.totalStaff)">
-                                <td v-for=" item in row" style="width: 300px;height: 220px">
+                                <td v-for=" item in row" style="width: 225px;height: 220px">
                                     <div :class="getMemberBgStyle(item.staff_id, department.currentRecordList)">
                                         <div class="number"> NO.{{item.person_information.id}}</div>
-                                        <div style="margin-top: 17px;text-align: center">
+                                        <div style="margin-top: 12px;text-align: center">
                                             <img :src="getImage(item)"
                                                  style="width: 80px;height: 80px;border-radius: 50%;align-items: center;justify-content: center;">
                                         </div>
@@ -142,10 +142,10 @@
             formatToMatrix(totalStaff) {
                 let rows = new Array();
                 for (let i = 0; i < totalStaff.length; i++) {
-                    if (i % 5 === 0) {
-                        rows[parseInt(i / 5)] = new Array();
+                    if (i % NUMBER_IN_LINE === 0) {
+                        rows[parseInt(i / NUMBER_IN_LINE)] = new Array();
                     }
-                    rows[parseInt(i / 5)].push(totalStaff[i]);
+                    rows[parseInt(i / NUMBER_IN_LINE)].push(totalStaff[i]);
                 }
                 return rows;
             },

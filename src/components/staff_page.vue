@@ -13,6 +13,7 @@
                         <div id="photo" v-for="u in userList"
                              style="width: 420px;height: 680px;
                              margin-left: 25%;
+                             animation-duration: 800ms;
                              background-image: url('../../src/assets/img/card_menber.png');
                              background-repeat: no-repeat;
                              background-size: 100%;" >
@@ -143,7 +144,7 @@
 //                    console.log("Remove right out!");
 				    _this.userList[0].photo = require("../assets/img/menber_card.png");
 				    _this.userList[0].name = "胡 通";
-                    $('#photo').animateCss('zoomInLeft', ()=> {
+                    $('#photo').animateCss('flipInY', ()=> {
 
                         _this.userList[0].photo = require("../assets/img/menber_card.png");
                         _this.userList[0].name = "胡 通";

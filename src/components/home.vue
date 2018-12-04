@@ -46,10 +46,10 @@
             </tr >
             <tr style="height: 80%;" >
                 <td colspan="3" >
-                    <div style="margin-top: 0px;" >
-                       <VipPage v-if="currentIndex == 0" ref="vipPage" v-show="isShowVIP" ></VipPage >
-                       <StaffPage v-if="currentIndex == 1" ref="staffPage" v-show="!isShowVIP" ></StaffPage >
-                       <NameListPage v-show="currentIndex == '2'" ></NameListPage >
+                    <div style="margin-top: 0px;">
+                       <!--<VipPage v-show="currentIndex == 0" ref="vipPage" ></VipPage >-->
+                       <StaffPage v-show="currentIndex == 1"  ref="staffPage"></StaffPage >
+                       <NameListPage v-show="currentIndex == 2"  ></NameListPage >
                     </div >
                 </td >
             </tr >

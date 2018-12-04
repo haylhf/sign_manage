@@ -3,7 +3,7 @@
         <el-col :span="12" :offset="8" >
             <div class="form-inline" style="width: 120px;cursor: pointer;float: left"
                  v-for="item in menuList" >
-                <div style="float: left;text-align: left" >
+                <div style="float: left;text-align: left" v-show="item.key!=0">
                     <div style="float: left;text-align: left;color: #C1C1C1;" >
                         <span :style="item.textStyle" @click="onClickMenu(item.key)" >{{item.text}}</span >
                         <div class="circleDiv" v-show="activedIndex==item.key" >
@@ -77,6 +77,7 @@
 	    computed: {},
 	    filters: {},
 	    created: function () {
+            _this.activedIndex = 1;
 		    setTextStyle();
 	    },
 	    mounted: function () {

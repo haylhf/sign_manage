@@ -10,8 +10,8 @@
                         </div >
                     </div >
                     <div v-show="item.key!=menuList.length-1"
-                         style="width: 2px;height: 12px; border: 1px solid #D4D4D4;
-                         background-color: #D4D4D4;float: left; margin-left: 40px;margin-top: 3px;"
+                         style="width: 2px;height: 12px; border: 1px solid #FFFFFF;
+                         float: left; margin-left: 40px;margin-top: 8px;opacity: 0.6"
                     ></div >
                 </div >
 
@@ -54,14 +54,16 @@
 				    "text-align": "left",
 				    "font-size": "18px",
 				    "font-family": 'PingFangSC-Semibold',
-                    "color": "#C1C1C1",
-                },
+				    "color": "#FFFFFF",
+				    "opacity": 1.0,
+			    },
 			    textNormalStyle: {
 				    "text-align": "left",
 				    "font-size": "18px",
 				    "font-family": 'PingFangSC-Semibold',
-                    "color": "#515151",
-                },
+				    "color": "#FFFFFF",
+				    "opacity": 0.5,
+			    },
 
 		    }
 	    },
@@ -96,10 +98,10 @@
 
      .circleDiv {
 	     width: 6px;
-	     height: 7px;
-	     border: 1px solid #878787;
+	     height: 6px;
+	     border: 1px solid #FFFFFF;
 	     border-radius: 50%;
-	     background-color: #878787;
+	     background-color: #FFFFFF;
 	     text-align: center;
 	     margin-top: 10px;
 	     margin-left: 15px;

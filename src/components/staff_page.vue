@@ -1,38 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
     <div >
-        <!--<div id="tour" style="position: fixed;-->
-        <!--z-index: -100;-->
-
-        <!--background-color: white;">-->
-        <!--<div class="wrap">-->
-        <!--<div class="switcher-wrap slider">-->
-        <!--<ul id="img-slider">-->
-        <!--<li class="li_img text-center" v-for="u in userList"-->
-        <!--style="float: left;width: 300px;height: 600px;-->
-        <!--background-image: url('../../src/assets/img/card_menber.png');-->
-        <!--background-repeat: no-repeat;-->
-        <!--background-size: 100%;-->
-        <!--background-position:top;">-->
-        <!--<img :src="u.photo"-->
-        <!--style="width: 180px;height: 180px;border-radius: 50%;-->
-        <!--align-items: center;justify-content: center;-->
-        <!--overflow: hidden;-->
-        <!--margin-top: 70px;margin-left: 10px;"/>-->
-        <!--<div class="col-center-block text-center label">-->
-        <!--<div style="min-height: 80px;margin-top: 20px;-->
-        <!--font-size: 48px;color: #515151;font-family: SquareFont;">-->
-        <!--{{u.name}}-->
-        <!--</div>-->
-        <!--<span style="font-size: 24px;color: #515151;font-family: SquareFont;">-->
-        <!--{{u.departName}}-->
-        <!--</span>-->
-        <!--</div>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
         <table style="width: 100%;height: 100%;" >
             <tr >
                 <td width="30%" style="text-align: center;" >
@@ -55,11 +22,11 @@
                                 overflow: hidden;
                                 margin-top: 140px;margin-left: 5px;" />
                             <div class="col-center-block text-center label" >
-                                <div style="min-height: 80px;margin-top: 20px;
-                                font-size: 48px;color: #515151;font-family: SquareFont;" >
+                                <div style="min-height: 80px;margin-top: 40px;
+                                font-size: 48px;color: #FFFFFF;font-family: SquareFont;" >
                                     {{u.name}}
                                 </div >
-                                <span style="font-size: 24px;color: #515151;font-family: SquareFont;" >
+                                <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;" >
                                     {{u.departName}}
                                 </span >
                             </div >

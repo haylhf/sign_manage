@@ -10,11 +10,11 @@
         </el-row>
         <div style="margin-top: 5px;">
             <div class="progress"
-                 style="background-color: white;border: 1px solid #9D9D9D;height: 6px;border-radius: 0px">
+                 style="background-color: transparent;border: 1px solid #9D9D9D;height: 6px;border-radius: 0px">
                 <div class="progress-bar" role="progressbar" :aria-valuenow="departInfo.currentValue"
                      aria-valuemin="0" :aria-valuemax="departInfo.totalValue"
                      :style="{ 'width': getPercent(departInfo.currentValue,departInfo.totalValue),
-				    'background-color': '#9D9D9D'}">
+				    'background-color': '#FFFFFF'}">
                     <!--<span >40%</span>-->
                 </div>
             </div>

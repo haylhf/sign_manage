@@ -40,7 +40,7 @@
                         background-size: 100%;
                         height: 60px;
                         background-position: bottom;" >
-                        <span style="font-size: 42px;color:#ADADAD;margin-right: 80px;" >{{currentTime}}</span >
+                        <span style="font-size: 42px;margin-right: 80px;" >{{currentTime}}</span >
                     </div >
                 </td >
             </tr >
@@ -85,7 +85,7 @@
                         <div style="margin-right: 80px;" >
                             <span class="textlabel" >签到率</span >
                             <br >
-                            <span style="font-size: 48px;color:#909090;" >90%</span >
+                            <span style="font-size: 48px;" >90%</span >
                         </div >
                     </div >
                 </td >
@@ -529,17 +529,16 @@
     span {
 	    text-align: center;
 	    font-family: 'SquareFont';
+        color: #FFFFFF;
     }
 
     .textlabel {
 	    font-size: 18px;
-	    color: #939393;
-	    font-family: 'SourceHanSansCN-Medium';
+	    font-family: 'SquareFont';
     }
 
     .textCount {
 	    font-size: 48px;
-	    color: #909090;
 	    font-family: 'SquareFont';
     }
 

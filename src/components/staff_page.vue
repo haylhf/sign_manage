@@ -1,18 +1,51 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div>
-        <div id="tour" style="position: fixed;
-        z-index: -100;
+        <!--<div id="tour" style="position: fixed;-->
+        <!--z-index: -100;-->
 
-        background-color: white;">
-            <div class="wrap">
-                <div class="switcher-wrap slider">
-                    <ul id="img-slider">
-                        <li class="li_img text-center" v-for="u in userList"
-                            style="float: left;width: 300px;height: 600px;
+        <!--background-color: white;">-->
+            <!--<div class="wrap">-->
+                <!--<div class="switcher-wrap slider">-->
+                    <!--<ul id="img-slider">-->
+                        <!--<li class="li_img text-center" v-for="u in userList"-->
+                            <!--style="float: left;width: 300px;height: 600px;-->
+                            <!--background-image: url('../../src/assets/img/card_menber.png');-->
+                            <!--background-repeat: no-repeat;-->
+                            <!--background-size: 100%;-->
+                            <!--background-position:top;">-->
+                            <!--<img :src="u.photo"-->
+                                 <!--style="width: 180px;height: 180px;border-radius: 50%;-->
+                                <!--align-items: center;justify-content: center;-->
+                                <!--overflow: hidden;-->
+                                <!--margin-top: 70px;margin-left: 10px;"/>-->
+                            <!--<div class="col-center-block text-center label">-->
+                                <!--<div style="min-height: 80px;margin-top: 20px;-->
+                                <!--font-size: 48px;color: #515151;font-family: SquareFont;">-->
+                                    <!--{{u.name}}-->
+                                <!--</div>-->
+                                <!--<span style="font-size: 24px;color: #515151;font-family: SquareFont;">-->
+                                    <!--{{u.departName}}-->
+                                <!--</span>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <table style="width: 100%;height: 100%;">
+            <tr>
+                <td width="30%" style="text-align: center;">
+                    <StaffDepartControl style="margin-left: 25%;margin-top: 40px;-webkit-transform: skew(1deg); -webkit-transform-origin: right;"
+                                        v-for="item in staffList"
+                                        :departInfo="item"></StaffDepartControl>
+                </td>
+                <td width="40%" style="text-align: center;background-color: white">
+                    <div style="text-align: center">
+                        <div id="photo" v-for="u in userList" style="width: 420px;height: 680px;
                             background-image: url('../../src/assets/img/card_menber.png');
                             background-repeat: no-repeat;
-                            background-size: 100%;
-                            background-position:top;">
+                            background-size: 100%;" @click="doAnimate()">
                             <img :src="u.photo"
                                  style="width: 180px;height: 180px;border-radius: 50%;
                                 align-items: center;justify-content: center;
@@ -27,21 +60,8 @@
                                     {{u.departName}}
                                 </span>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <table style="width: 100%;height: 100%;">
-            <tr>
-                <td width="30%" style="text-align: center;">
-                    <StaffDepartControl style="margin-left: 25%;margin-top: 40px;"
-                                        v-for="item in staffList"
-                                        :departInfo="item"></StaffDepartControl>
-                </td>
-                <td style="text-align: center;">
-
+                        </div>
+                    </div>
                 </td>
                 <td width="30%" style="text-align: center;">
                     <div style="margin-left: 40%; margin-top: 10px;">
@@ -87,6 +107,32 @@
     });
     import StaffDepartControl from '../components/staff_depart_control.vue';
     import StaffInfoControl from '../components/staffInfo_control.vue';
+    $.fn.extend({
+        animateCss: function(animationName, callback) {
+            var animationEnd = (function(el) {
+                var animations = {
+                    animation: 'animationend',
+                    OAnimation: 'oAnimationEnd',
+                    MozAnimation: 'mozAnimationEnd',
+                    WebkitAnimation: 'webkitAnimationEnd',
+                };
+
+                for (var t in animations) {
+                    if (el.style[t] !== undefined) {
+                        return animations[t];
+                    }
+                }
+            })(document.createElement('div'));
+
+            this.addClass('animated ' + animationName).one(animationEnd, function() {
+                $(this).removeClass('animated ' + animationName);
+
+                if (typeof callback === 'function') callback();
+            });
+
+            return this;
+        },
+    });
 
     var _this
     export default {
@@ -143,21 +189,25 @@
                         name: "张 一",
                         departName: "人事部",
                         photo: require("../assets/img/male.png")
-                    },
-                    {
-                        name: "张 二",
-                        departName: "投资部",
-                        photo: require("../assets/img/male.png")
-                    },
-                    {
-                        name: "张 三",
-                        departName: "开发部",
-                        photo: require("../assets/img/male.png")
-                    },
+                    }
                 ]
             }
         },
-        methods: {},
+        methods: {
+            doAnimate() {
+                $('#photo').animateCss('animated zoomOutRight', ()=>{
+//                    console.log("Right out finish!");
+//                    $('#photo').removeClass("animated zoomOutRight");
+//                    console.log("Remove right out!");
+                    _this.userList[0].photo = require("../assets/img/menber_card.png");
+                    _this.userList[0].name = "胡 通";
+                    $('#photo').animateCss("animated zoomInLeft", ()=> {
+                        console.log("In left out finish!");
+//                        $('#photo').removeClass("animated zoomInLeft");
+                    });
+                });
+            }
+        },
         computed: {},
         filters: {},
         created: function () {

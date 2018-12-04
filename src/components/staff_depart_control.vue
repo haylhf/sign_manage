@@ -2,10 +2,10 @@
     <div style="width: 220px;height: 40px;">
         <el-row>
             <el-col :span="8">
-                <span style="float: left;font-family: SquareFont;">{{departInfo.departName}}</span>
+                <span style="float: left; font-size:18px;font-family: SquareFont;">{{departInfo.departName}}</span>
             </el-col>
             <el-col :span="8" :offset="8">
-                <span style="float: right;font-family: SquareFont;">{{departInfo.currentValue}}/{{departInfo.totalValue}}</span>
+                <span style="float: right; font-size:18px;font-family: SquareFont;">{{departInfo.currentValue}}/{{departInfo.totalValue}}</span>
             </el-col>
         </el-row>
         <div style="margin-top: 5px;">

@@ -10,13 +10,7 @@
                 </td>
                 <td width="40%" style="text-align: center;">
                     <div style="text-align: center;">
-                        <div id="photo" v-for="u in animationList"
-                             style="width: 420px;height: 680px;
-                             margin-left: 25%;
-                             animation-duration: 800ms;
-                             background-image: url('../../src/assets/img/card_menber.png');
-                             background-repeat: no-repeat;
-                             background-size: 100%;">
+                        <div id="photo" v-for="u in animationList" class="card-member">
                             <img :src="u.photo"
                                  style="width: 200px;height: 200px;border-radius: 50%;
 
@@ -234,5 +228,13 @@
 
 </script>
 <style>
+    .card-member {
+        width: 420px;height: 680px;
+        margin-left: 25%;
+        animation-duration: 800ms;
+        background-image: url('../../src/assets/img/card_menber.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
 
 </style>

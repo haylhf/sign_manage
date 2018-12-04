@@ -1,8 +1,8 @@
 //Server root address
-var IP = "http://127.0.0.1";
+var IP = "http://192.168.0.119";
 var HOST = IP + ":9090/";
 var SYSTEMNAME = "Face";
-var MqttServer = `47.100.9.64`;
+var MqttServer = `192.168.0.119`;
 var ServerPort = Number(61623);
 var ServerTOPIC = ["staff/sign_in", "staff/vip/sign_in", "staff/sign_in/reset"];
 var HOME_SCREEN_TITLE = "签到墙"

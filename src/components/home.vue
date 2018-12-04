@@ -9,14 +9,7 @@
         <table style="width: 100%;height: 100%;position: fixed;">
             <tr style="height: 10%">
                 <td width="30%" style="vertical-align: top;text-align: left">
-                    <div style="margin-top: 20px;
-                        width: 478px;
-                        float: left;
-                        background-image: url('../../src/assets/img/line_u_l.png');
-                        background-repeat: no-repeat;
-                        background-size: 100%;
-                        height: 60px;
-                        background-position: bottom;">
+                    <div class="up-left-line">
                         <img src="../assets/img/logo_normal.png"
                              style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;">
                     </div>
@@ -26,15 +19,7 @@
                                 :menuChanged="onMenuChanged"></MenuButton>
                 </td>
                 <td width="30%" style="text-align: right">
-                    <div style="
-                        margin-top: -25px;
-                        width: 478px;
-                        float: right;
-                        background-image: url('../../src/assets/img/line_u_r.png');
-                        background-repeat: no-repeat;
-                        background-size: 100%;
-                        height: 60px;
-                        background-position: bottom;">
+                    <div class="up-right-line">
                         <span style="font-size: 42px;margin-right: 80px;">{{currentTime}}</span>
                     </div>
                 </td>
@@ -50,14 +35,7 @@
             </tr>
             <tr style="height: 10%;">
                 <td width="30%" style="text-align: left;">
-                    <div style="
-                        width: 318px;
-                        float: left;
-                        background-image: url('../../src/assets/img/line_b_l.png');
-                        background-repeat: no-repeat;
-                        background-size: 100%;
-                        height: 100px;
-                        background-position:top;">
+                    <div class="down-left-line">
                         <br>
                         <div style="margin-left: 80px;">
                             <span class="textlabel">签到人数</span>
@@ -68,14 +46,7 @@
                 </td>
                 <td></td>
                 <td width="30%" style="text-align: right;">
-                    <div style="
-                        width: 318px;
-                        float: right;
-                        background-image: url('../../src/assets/img/line_b_r.png');
-                        background-repeat: no-repeat;
-                        background-size: 100%;
-                        height: 100px;
-                        background-position:top;">
+                    <div class="down-right-line">
                         <br>
                         <div style="margin-right: 80px;">
                             <span class="textlabel">签到率</span>
@@ -622,6 +593,44 @@
 
 </script>
 <style>
+    .up-left-line {
+        margin-top: 20px;
+        width: 478px;
+        float: left;
+        background-image: url('../../src/assets/img/line_u_l.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 60px;
+        background-position: bottom;
+    }
+    .up-right-line {
+        margin-top: -25px;
+        width: 478px;
+        float: right;
+        background-image: url('../../src/assets/img/line_u_r.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 60px;
+        background-position: bottom;
+    }
+    .down-left-line {
+        width: 318px;
+        float: left;
+        background-image: url('../../src/assets/img/line_b_l.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 100px;
+        background-position:top;
+    }
+    .down-right-line {
+        width: 318px;
+        float: right;
+        background-image: url('../../src/assets/img/line_b_r.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        height: 100px;
+        background-position:top;
+    }
     span {
         text-align: center;
         font-family: 'SquareFont';

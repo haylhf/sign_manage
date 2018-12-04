@@ -10,15 +10,7 @@
                 </div >
             </el-col >
             <el-col :span="6"  >
-                <div style="
-                    vertical-align: middle;
-                    text-align: center;
-                    height: 90px;
-                    width: 90px;
-                    background-image: url('../../src/assets/img/normal_card_s.png');
-                    background-repeat: no-repeat;
-                    background-size: 100%;
-                    background-position:top;" >
+                <div class="card-member-small" >
                     <img style="margin-top: 18px;border-radius: 50%;align-items: center;justify-content: center;
                                 overflow: hidden;" :src="staffInfo.photo" width="64px;" height="64px;"/>
                 </div >
@@ -61,5 +53,15 @@
 
 </script >
 <style >
+    .card-member-small {
+        vertical-align: middle;
+        text-align: center;
+        height: 90px;
+        width: 90px;
+        background-image: url('../../src/assets/img/normal_card_s.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position:top;
+    }
 
 </style >

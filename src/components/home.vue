@@ -487,7 +487,7 @@
 	    mounted: function () {
 		    currentInterval = setInterval(function doAnimation() {
 
-			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm:ss");
+			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm");
 //			    $.ajax({
 //				    url: HOST + "user/getStaffNum",
 //				    type: 'GET',
@@ -534,7 +534,7 @@
 
     .textlabel {
 	    font-size: 18px;
-	    font-family: 'SquareFont';
+        font-family:'PingFangSC-Semibold'
     }
 
     .textCount {

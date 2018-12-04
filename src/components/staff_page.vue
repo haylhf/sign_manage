@@ -19,9 +19,10 @@
                              background-size: 100%;">
                             <img :src="u.photo"
                                  style="width: 180px;height: 180px;border-radius: 50%;
+
                                 align-items: center;justify-content: center;
                                 overflow: hidden;
-                                margin-top: 140px;margin-left: 5px;"/>
+                                margin-top: 150px;margin-left: 5px;"/>
                             <div class="col-center-block text-center label">
                                 <div style="min-height: 80px;margin-top: 40px;
                                 font-size: 48px;color: #FFFFFF;font-family: SquareFont;">

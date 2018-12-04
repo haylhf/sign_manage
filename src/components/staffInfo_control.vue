@@ -2,9 +2,10 @@
     <div style="width: 200px;height: 100px;position: relative">
         <el-row >
             <el-col :span="12" >
-                <div style="margin-right: 20px;margin-top: 29px;">
+                <div style="margin-right: 20px;margin-top: 29px;float: right">
                     <span style="font-size:20px;float: right;color: #FFFFFF; font-family: SquareFont;" >{{staffInfo.name}}</span >
-                    <span style="font-size:12px;float: right;color: #FFFFFF;font-family: SquareFont;
+                    <br>
+                    <span style="font-size:12px;float: right; color: #FFFFFF;font-family: SquareFont;
                     margin-right: 2px;margin-top: 10px;" >{{staffInfo.departName}}</span >
                 </div >
             </el-col >
@@ -18,7 +19,8 @@
                     background-repeat: no-repeat;
                     background-size: 100%;
                     background-position:top;" >
-                    <img style="margin-top: 18px;" :src="staffInfo.photo" width="64px;" height="64px;"/>
+                    <img style="margin-top: 18px;border-radius: 50%;align-items: center;justify-content: center;
+                                overflow: hidden;" :src="staffInfo.photo" width="64px;" height="64px;"/>
                 </div >
             </el-col >
         </el-row >

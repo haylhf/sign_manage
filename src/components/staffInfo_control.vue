@@ -1,15 +1,15 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
     <div style="width: 200px;height: 100px;position: relative">
         <el-row >
-            <el-col :span="12" >
+            <el-col :span="18" >
                 <div style="margin-right: 20px;margin-top: 29px;float: right">
                     <span style="font-size:20px;float: right;color: #FFFFFF; font-family: PingFangSC-Semibold;" >{{staffInfo.name}}</span >
                     <br>
                     <span style="font-size:12px;float: right; color: #FFFFFF;font-family: SquareFont;
-                    margin-right: 2px;margin-top: 10px;" >{{staffInfo.departName}}</span >
+                    margin-right: 2px;margin-top: 10px;" >{{staffInfo.id != null ? staffInfo.id:staffInfo.departName}}</span >
                 </div >
             </el-col >
-            <el-col :span="8"  >
+            <el-col :span="6"  >
                 <div style="
                     vertical-align: middle;
                     text-align: center;

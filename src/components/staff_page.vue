@@ -29,7 +29,7 @@
                                     {{u.name}}
                                 </div>
                                 <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;">
-                                    {{u.departName}}
+                                    {{u.id != null ? u.id : u.departName}}
                                 </span>
                             </div>
                         </div>

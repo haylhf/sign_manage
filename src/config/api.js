@@ -11,7 +11,7 @@ var PHOTO_URL = `http://api.vaiwan.com:8081/image/`;
 var EveryPageNum = 10;
 var MaxUpDownItems = 4;
 
-var NUMBER_IN_LINE = 6
+var NUMBER_IN_LINE = 5;
 
 const STATISTICS_DATE_MODE = {
 	YEAR: 0,

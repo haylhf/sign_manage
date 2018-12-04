@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <el-row>
         <el-col class="left-panel" :span="16">
-            <div id="div-scroll" v-show="bigMode" style="margin-left: 90px;height: 750px;overflow-y: auto">
+            <div id="div-scroll" v-show="bigMode" style="margin-left: 90px;height: 725px;overflow-y: auto">
                 <div v-for="department in departmentSignData">
                     <el-row style="height: 60px">
                         <el-col :span="1">
@@ -43,7 +43,7 @@
         <el-col class="right-panel" :span="7">
             <div>
                 <img :src="getIconLine()"/>
-                <div style="height: 750px;overflow: hidden">
+                <div style="height: 725px;overflow: hidden">
                     <TextScroller :text-list="departments" :position-changed="positionChanged"
                                   :current-index="calculatedIndex"></TextScroller>
                 </div>

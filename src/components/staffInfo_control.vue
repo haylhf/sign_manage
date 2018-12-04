@@ -18,7 +18,7 @@
                     background-repeat: no-repeat;
                     background-size: 100%;
                     background-position:top;" >
-                    <img style="margin-top: 18px;" src="../../src/assets/img/male.png" width="64px;" height="64px;"/>
+                    <img style="margin-top: 18px;" :src="staffInfo.photo" width="64px;" height="64px;"/>
                 </div >
             </el-col >
         </el-row >

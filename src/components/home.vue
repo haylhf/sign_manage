@@ -18,7 +18,7 @@
                         height: 60px;
                         background-position: bottom;">
                         <img src="../assets/img/logo_normal.png"
-                             style="height: 35px;margin-top: 10px; margin-left: 80px; top: 0px; width: 200px;">
+                             style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;">
                     </div>
                 </td>
                 <td style="text-align: center;">
@@ -27,7 +27,7 @@
                 </td>
                 <td width="30%" style="text-align: right">
                     <div style="
-                        margin-top: 20px;
+                        margin-top: -25px;
                         width: 478px;
                         float: right;
                         background-image: url('../../src/assets/img/line_u_r.png');

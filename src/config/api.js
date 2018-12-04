@@ -6,7 +6,7 @@ var MqttServer = `47.100.9.64`;
 var ServerPort = Number(61623);
 var ServerTOPIC = ["staff/sign_in", "staff/vip/sign_in", "staff/sign_in/reset"];
 var HOME_SCREEN_TITLE = "签到墙"
-var PHOTO_URL = `http://api.vaiwan.com:8081/image/`;
+var PHOTO_URL = `http://192.168.0.119:9812/image/`;
 
 var EveryPageNum = 10;
 var MaxUpDownItems = 4;

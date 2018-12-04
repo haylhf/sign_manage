@@ -3,7 +3,7 @@
         <el-row >
             <el-col :span="12" >
                 <div style="margin-right: 20px;margin-top: 29px;float: right">
-                    <span style="font-size:20px;float: right;color: #FFFFFF; font-family: SquareFont;" >{{staffInfo.name}}</span >
+                    <span style="font-size:20px;float: right;color: #FFFFFF; font-family: PingFangSC-Semibold;" >{{staffInfo.name}}</span >
                     <br>
                     <span style="font-size:12px;float: right; color: #FFFFFF;font-family: SquareFont;
                     margin-right: 2px;margin-top: 10px;" >{{staffInfo.departName}}</span >

@@ -18,14 +18,14 @@
                              background-repeat: no-repeat;
                              background-size: 100%;">
                             <img :src="u.photo"
-                                 style="width: 180px;height: 180px;border-radius: 50%;
+                                 style="width: 200px;height: 200px;border-radius: 50%;
 
                                 align-items: center;justify-content: center;
                                 overflow: hidden;
-                                margin-top: 150px;margin-left: 5px;"/>
+                                margin-top: 131px;margin-left: 6px;"/>
                             <div class="col-center-block text-center label">
                                 <div style="min-height: 80px;margin-top: 40px;
-                                font-size: 48px;color: #FFFFFF;font-family: SquareFont;">
+                                font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;">
                                     {{u.name}}
                                 </div>
                                 <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;">
@@ -187,8 +187,8 @@
                     _this.userList.splice(0, 1);
                     _this.animationList[0] = data;
                     setTimeout(()=>{
-                        $('#photo').animateCss('flipInY', () => {
-                            $('#photo').animateCss('zoomOutRight', () => {
+                        $('#photo').animateCss('zoomOutRight', () => {
+                            $('#photo').animateCss('flipInY', () => {
                                 _this.showToUIAndPlay();
                             });
                         });
@@ -196,12 +196,12 @@
 
                     try {
                         if (_this.staffInfoList.length >= MaxShowCount) {
-                            _this.staffInfoList.splice(0, 1)
+                            _this.staffInfoList.splice(_this.staffInfoList.length-1, 1)
                         }
                     } catch (ex) {
                         console.log(ex);
                     }
-                    _this.staffInfoList.push(data);
+                    _this.staffInfoList.unshift(data);
                 }
             },
 

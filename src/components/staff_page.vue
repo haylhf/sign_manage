@@ -77,12 +77,19 @@
 	    },
     });
 
+    var MaxShowCount = 5;
     var _this
     export default {
 	    name: "StaffPage",
 	    components: {
 		    StaffDepartControl,
 		    StaffInfoControl,
+	    },
+	    props: {
+		    tagDepartList: {
+			    type: [],
+			    default: null
+		    },
 	    },
 	    data() {
 		    _this = this;
@@ -133,10 +140,58 @@
 					    departName: "人事部",
 					    photo: require("../assets/img/male.png")
 				    }
-			    ]
+			    ],
 		    }
 	    },
 	    methods: {
+		    updateDepartmentData(infoList, tagList)
+		    {
+			    _this.tagDepartList = tagList;
+			    for (let item of infoList) {
+				    let isFound = false;
+				    for (let i = 0; i < _this.staffList.length; i++) {
+					    if (_this.staffList[i].tagId == item.tagId) {
+						    isFound = true;
+						    _this.staffList[i].totalValue = item.totalStaff.length;
+						    _this.staffList[i].currentValue = item.currentRecordList.length;
+						    break;
+					    }
+				    }
+				    if (!isFound) {
+					    _this.staffList.push({
+						    tagId: item.tagId,
+						    totalValue: item.totalStaff.length,
+						    currentValue: item.currentRecordList.length,
+						    //departName
+					    })
+					    try {
+						    if (_this.staffList.length > MaxShowCount) {
+							    _this.staffList.splice(0, 1)
+						    }
+					    } catch (ex) {
+						    console.log(ex);
+					    }
+				    }
+			    }
+
+			    for (let i = 0; i < _this.staffList.length; i++) {
+				    if (_this.staffList[i].departName && _this.staffList[i].departName != "") {
+					    continue;
+				    }
+				    for (let item of _this.tagDepartList) {
+					    if (item.tag_id == _this.staffList[i].tagId) {
+						    _this.staffList[i].departName = item.tag_name;
+						    break;
+					    }
+				    }
+			    }
+
+		    },
+		    updateStaffData(infoList)
+		    {
+
+		    },
+
 		    doAnimate() {
 			    $('#photo').animateCss('zoomOutRight', ()=> {
 //                    console.log("Right out finish!");
@@ -146,21 +201,22 @@
 				    _this.userList[0].name = "胡 通";
                     $('#photo').animateCss('flipInY', ()=> {
 
-                        _this.userList[0].photo = require("../assets/img/menber_card.png");
-                        _this.userList[0].name = "胡 通";
-                    });
+					    _this.userList[0].photo = require("../assets/img/menber_card.png");
+					    _this.userList[0].name = "胡 通";
+				    });
 			    });
 		    }
 	    },
 	    computed: {},
 	    filters: {},
 	    created: function () {
-
+		    this.fetTotalSignData();
+		    this.fetchTag();
 	    },
 	    mounted: function () {
 
 		    setInterval(()=> {
-                _this.doAnimate();
+			    _this.doAnimate();
 		    }, 2000)
 
 	    },

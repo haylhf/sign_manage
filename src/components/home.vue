@@ -22,11 +22,6 @@
                     </div >
                 </td >
                 <td style="text-align: center;" >
-                     <!--<el-radio-group v-model="radioMenu" text-color="#FFFFFF" fill="#939393" @change="radioChanged" style="font-family: SourceHanSansCN-Medium">-->
-                     <!--<el-radio-button label="部门" ></el-radio-button >-->
-                     <!--<el-radio-button label="签到" ></el-radio-button >-->
-                     <!--<el-radio-button label="名单" ></el-radio-button >-->
-                     <!--</el-radio-group >-->
                     <MenuButton ref="menuButton" :menuList="menuList"
                                 :menuChanged="onMenuChanged" ></MenuButton >
                 </td >
@@ -85,7 +80,7 @@
                         <div style="margin-right: 80px;" >
                             <span class="textlabel" >签到率</span >
                             <br >
-                            <span style="font-size: 48px;" >90%</span >
+                            <span style="font-size: 48px;" >{{getPercent(signInNum,staffNum)}}</span >
                         </div >
                     </div >
                 </td >
@@ -96,6 +91,7 @@
 
 <script >
     var currentInterval;
+    var dataInterval;
     var showADTimerId;
     var mqttReconnectInterval = null;
     var isLoading = false;
@@ -302,9 +298,14 @@
 				    }
 			    ],
 			    currentIndex: "1",
+			    departmentSignData: [],
 		    }
 	    },
 	    methods: {
+		    getPercent(cValue, tValue) {
+			    let value = Math.floor((cValue / tValue) * 100);
+			    return `${value}%`;
+		    },
 		    onMenuChanged(newKey)
 		    {
 			    _this.currentIndex = newKey;
@@ -472,56 +473,104 @@
 			    return _this.signInNum + " / " + _this.staffNum;
 		    },
 
-		    radioChanged()//中间内容切换
-		    {
-			    console.log(_this.radioMenu)
+		    fetTotalSignData() {
+			    $.ajax({
+				    url: HOST + "user/getTotalSignData",
+				    type: 'GET',
+				    dataType: 'json',
+				    success: function (data) {
+					    if (data.code === 200) {
+						    _this.departmentSignData = data.data;
+						    console.log(`departmentSignData:\r\n${JSON.stringify(_this.departmentSignData)}`)
+					    }
+				    },
+				    error: function (data) {
 
-		    }
+				    }
+			    })
+		    },
+		    fetchTag() {
+			    $.ajax({
+				    url: HOST + "tag/list",
+				    type: 'POST',
+				    dataType: 'json',
+				    success: function (data) {
+					    if (data.code === 200) {
+						    _this.tagList = data.data;
+						    //console.log(`_this.tagList:\r\n${JSON.stringify(_this.tagList)}`)
+					    }
+				    },
+				    error: function (data) {
+
+				    }
+			    })
+		    },
+		    getTotalUserCount() {
+			    $.ajax({
+				    url: HOST + "user/getStaffNum",
+				    type: 'GET',
+				    dataType: 'json',
+				    success: function (data) {
+					    if (data.code == 200) {
+						    _this.staffNum = data.data;
+					    }
+				    },
+				    error: function (data) {
+
+				    }
+			    })
+		    },
+		    getSigninUserCount() {
+			    $.ajax({
+				    url: HOST + "user/getStaffSignInNum",
+				    type: 'GET',
+				    dataType: 'json',
+				    success: function (data) {
+					    if (data.code == 200) {
+						    _this.signInNum = data.data;
+					    }
+				    },
+				    error: function (data) {
+
+				    }
+			    })
+		    },
+
+		    refreshData()
+		    {
+			    dataInterval = setInterval(function doAnimation() {
+				    _this.fetTotalSignData();
+                    if (_this.currentIndex == 1) {
+                        if (_this.$refs.staffPage) {
+                            _this.$refs.staffPage.updateDepartmentData(_this.departmentSignData, _this.tagList);
+                        }
+                    }
+			    }, 2000);//定时器
+		    },
+
+
 	    },
 	    computed: {},
 	    filters: {},
 	    created: function () {
-		    _this = this;
-
+		    _this.fetchTag();
+		    _this.fetTotalSignData();
+		    _this.refreshData();
 	    },
 	    mounted: function () {
-		    currentInterval = setInterval(function doAnimation() {
-
+		    currentInterval = setInterval(()=> {
 			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm");
-//			    $.ajax({
-//				    url: HOST + "user/getStaffNum",
-//				    type: 'GET',
-//				    dataType: 'json',
-//				    success: function (data) {
-//					    if (data.code == 200) {
-//						    _this.staffNum = data.data;
-//					    }
-//				    },
-//				    error: function (data) {
-//
-//				    }
-//			    })
-//			    $.ajax({
-//				    url: HOST + "user/getStaffSignInNum",
-//				    type: 'GET',
-//				    dataType: 'json',
-//				    success: function (data) {
-//					    if (data.code == 200) {
-//						    _this.signInNum = data.data;
-//					    }
-//				    },
-//				    error: function (data) {
-//
-//				    }
-//			    })
-
+			    _this.getTotalUserCount();
+			    _this.getSigninUserCount();
 		    }, 1000);//定时器
 
 	    },
 	    destroyed: function () {
 		    clearInterval(currentInterval);
 		    clearTimeout(showADTimerId);
+		    clearInterval(dataInterval);
 	    }
+
     }
 
 </script >
@@ -534,7 +583,7 @@
 
     .textlabel {
 	    font-size: 18px;
-        font-family:'PingFangSC-Semibold'
+	    font-family: 'PingFangSC-Semibold'
     }
 
     .textCount {

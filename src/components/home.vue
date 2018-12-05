@@ -671,7 +671,7 @@
     }
 
     .up-right-line {
-	    margin-top: -25px;
+	    margin-top: 0px;
 	    width: 478px;
 	    float: right;
 	    background-image: url('../../src/assets/img/line_deco_normal_RU.png');

@@ -15,15 +15,18 @@
                     <div style="text-align: center;" v-show="showSignView" >
                         <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip" >
                             <img :src="u.photo"
-                                 style="width: 252px;height: 252px;border-radius: 50%;
+                                 style="width: 200px;height: 200px;border-radius: 50%;
                                  align-items: center;justify-content: center;
                                  overflow: hidden;
-                                 margin-top: 92px;margin-left: 5px;" />
+                                 margin-top: 131px;margin-left: 6px;" />
                             <div class="col-center-block text-center label" >
-                                <div style="min-height: 60px;margin-top: 135px;
+                                <div style="min-height: 80px;margin-top: 40px;
                                      font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >
                                     {{u.name}}
                                 </div >
+                                <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;" >
+                                    {{u.id != null ? u.id : u.departName}}
+                                </span >
                             </div >
                         </div >
                         <div v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member" >

@@ -10,7 +10,7 @@
                         <el-col :span="5">
                             <div class="department-title">{{filterDepartmentName(department.tagId)}}</div>
                         </el-col>
-                        <el-col :span="4" :offset="9">
+                        <el-col :span="5" :offset="8">
                             <div class="signed-percent">{{formatNumber(department.currentRecordList.length)}} /
                                 {{formatNumber(department.totalStaff.length)}}
                             </div>
@@ -21,7 +21,7 @@
                             <tr v-for="row in formatToMatrix(department.totalStaff)">
                                 <td v-for=" item in row" style="width: 225px;height: 220px">
                                     <div :class="getMemberBgStyle(item.staff_id, department.currentRecordList)">
-                                        <div class="number"> NO.{{item.person_information.id}}</div>
+                                        <div class="number">{{item.person_information.id}}</div>
                                         <div style="margin-top: 12px;text-align: center">
                                             <img :src="getImage(item)"
                                                  style="width: 80px;height: 80px;border-radius: 50%;align-items: center;justify-content: center;">
@@ -55,7 +55,7 @@
 <script>
     var _this;
     import TextScroller from "./text_scrollor.vue"
-
+    var intervalId;
     export default {
         name: "NameListPage",
         components: {
@@ -186,7 +186,10 @@
         computed: {},
         filters: {},
         created: function () {
-
+            intervalId = setInterval(()=>{
+                _this.fetTotalSignData();
+                console.log("fetTotalSignData");
+            }, 1000);
         },
         mounted: function () {
             this.fetTotalSignData();
@@ -203,6 +206,7 @@
         },
         destroyed: function () {
             document.getElementById("div-scroll").addEventListener('scroll', null);
+            clearInterval(intervalId);
         }
     }
 

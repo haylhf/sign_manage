@@ -9,17 +9,19 @@
         <table style="width: 100%;height: 100%;position: fixed;" >
             <tr style="height: 10%" >
                 <td width="30%" style="vertical-align: top;text-align: left" >
-                    <div class="up-left-line" >
-                        <img src="../assets/img/logo_normal.png"
+                    <div :class="isShowVIP?'up-left-line-vip':'up-left-line'" >
+                        <img :src="isShowVIP?'../../src/assets/img/logo_gold.png':'../../src/assets/img/logo_normal.png'"
                              style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
                     <MenuButton ref="menuButton" :menuList="menuList"
-                                :menuChanged="onMenuChanged" ></MenuButton >
+                                :menuChanged="onMenuChanged"
+                                :isVip="isShowVIP"
+                    ></MenuButton >
                 </td >
                 <td width="30%" style="text-align: right" >
-                    <div class="up-right-line" >
+                    <div :class="isShowVIP?'up-right-line-vip':'up-right-line'" >
                         <span style="font-size: 42px;margin-right: 80px;" >{{currentTime}}</span >
                     </div >
                 </td >
@@ -27,15 +29,21 @@
             <tr style="height: 80%;" >
                 <td colspan="3" >
                     <div style="margin-top: 0px;" >
-                        <StaffPage v-show="currentIndex == 1" ref="staffPage" :isVip="isShowVIP"
+                        <StaffPage v-show="currentIndex == 1"
+                                   ref="staffPage"
+                                   :isVip="isShowVIP"
                                    :tagDepartList="tagList" ></StaffPage >
                         <NameListPage v-show="currentIndex == 2" ></NameListPage >
+                         <!--<el-button style="bottom: 0px" type="primary" @click="isShowVIP=!isShowVIP"-->
+                                    <!--icon="el-icon-check"-->
+                         <!--&gt;TEST-->
+                        <!--</el-button >-->
                     </div >
                 </td >
             </tr >
             <tr style="height: 10%;" >
                 <td width="30%" style="text-align: left;" >
-                    <div class="down-left-line" >
+                    <div :class="isShowVIP?'down-left-line-vip':'down-left-line'" >
                         <br >
                         <div style="margin-left: 80px;" >
                             <span class="textlabel" >签到人数</span >
@@ -46,7 +54,7 @@
                 </td >
                 <td ></td >
                 <td width="30%" style="text-align: right;" >
-                    <div class="down-right-line" >
+                    <div :class="isShowVIP?'down-right-line-vip':'down-right-line'" >
                         <br >
                         <div style="margin-right: 80px;" >
                             <span class="textlabel" >签到率</span >
@@ -131,8 +139,7 @@
     };
 
     window.onclick = () => {
-	    //requestFullScreen();
-        _this.btnTest();
+	    requestFullScreen();
     };
 
     function onConnectionLost(responseObject) {
@@ -167,18 +174,19 @@
 				    onVisitorSign(data);
 				    break;
 			    case ServerTOPIC[1]://vip
-				    _this.isShowVIP = true;
-				    setTimeout(() => {
-					    _this.isShowVIP = false;
-				    }, 1000 * 15);
+				    if (_this.currentIndex == 1) {
+					    _this.isShowVIP = true;
+					    setTimeout(() => {
+						    _this.isShowVIP = false;
+					    }, 1000 * 15);
+				    }
 				    onVisitorSign(data);
 				    break;
 			    case ServerTOPIC[2]:
-				    if (_this.$refs.vipPage) {
-					    _this.$refs.vipPage.reset();
-				    }
-				    if (_this.$refs.staffPage) {
-					    _this.$refs.staffPage.reset();
+				    if (_this.currentIndex == 1) {
+					    if (_this.$refs.staffPage) {
+						    _this.$refs.staffPage.resetUI();
+					    }
 				    }
 				    break;
 			    default:
@@ -217,10 +225,8 @@
 			    dataList.push(data);
 		    }
 		    if (_this.$refs.staffPage) {
-			    _this.isShowVIP = false;//test TODO
-			    _this.$refs.staffPage.updateStaffData(dataList);
+			    _this.$refs.staffPage.updateStaffData(dataList, _this.isShowVIP);
 		    }
-
 	    } catch (e) {
 		    console.log(e)
 	    } finally {
@@ -322,7 +328,14 @@
 			    return `${value}%`;
 		    },
 		    onMenuChanged(newKey) {
-			    _this.currentIndex = newKey;
+			    if (_this.currentIndex != newKey) {
+				    _this.currentIndex = newKey;
+				    _this.isShowVIP = false;
+				    if (_this.$refs.staffPage) {
+					    _this.$refs.staffPage.updateStaffData([], _this.isShowVIP);
+				    }
+
+			    }
 			    console.log("selected changed " + newKey);
 		    },
 
@@ -577,7 +590,7 @@
 	    mounted: function () {
 		    currentInterval = setInterval(() => {
 			    _this.currentTime = new Date().format("yyyy-MM-dd hh:mm");
-			    //_this.btnTest();
+//			    _this.btnTest();
 
 		    }, 2000);//定时器
 
@@ -592,52 +605,112 @@
 
 </script >
 <style >
-    .up-left-line {
+
+    .up-left-line-vip {
 	    margin-top: 20px;
 	    width: 478px;
 	    float: left;
-	    background-image: url('../../src/assets/img/line_u_l.png');
+	    background-image: url('../../src/assets/img/vip/line_u_l.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;
 	    height: 60px;
 	    background-position: bottom;
+	    color: #D6BE98;
+
+    }
+
+    .up-right-line-vip {
+	    margin-top: -25px;
+	    width: 478px;
+	    float: right;
+	    background-image: url('../../src/assets/img/vip/line_u_r.png');
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	    height: 60px;
+	    background-position: bottom;
+	    color: #D6BE98;
+
+    }
+
+    .down-left-line-vip {
+	    width: 318px;
+	    float: left;
+	    background-image: url('../../src/assets/img/vip/line_b_l.png');
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	    height: 100px;
+	    background-position: top;
+	    font-family: 'SquareFont';
+	    color: #D6BE98;
+
+    }
+
+    .down-right-line-vip {
+	    width: 318px;
+	    float: right;
+	    background-image: url('../../src/assets/img/vip/line_b_r.png');
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	    height: 100px;
+	    background-position: top;
+	    font-family: 'SquareFont';
+	    color: #D6BE98;
+    }
+
+    .up-left-line {
+	    margin-top: 20px;
+	    width: 478px;
+	    float: left;
+	    background-image: url('../../src/assets/img/line_deco_normal_LU.png');
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	    height: 60px;
+	    background-position: bottom;
+	    color: #FFFFFF;
+
     }
 
     .up-right-line {
 	    margin-top: -25px;
 	    width: 478px;
 	    float: right;
-	    background-image: url('../../src/assets/img/line_u_r.png');
+	    background-image: url('../../src/assets/img/line_deco_normal_RU.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;
 	    height: 60px;
 	    background-position: bottom;
+	    color: #FFFFFF;
+
     }
 
     .down-left-line {
 	    width: 318px;
 	    float: left;
-	    background-image: url('../../src/assets/img/line_b_l.png');
+	    background-image: url('../../src/assets/img/line_deco_normal_LB.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;
 	    height: 100px;
 	    background-position: top;
+	    font-family: 'SquareFont';
+	    color: #FFFFFF;
+
     }
 
     .down-right-line {
 	    width: 318px;
 	    float: right;
-	    background-image: url('../../src/assets/img/line_b_r.png');
+	    background-image: url('../../src/assets/img/line_deco_normal_RB.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;
 	    height: 100px;
 	    background-position: top;
+	    font-family: 'SquareFont';
+	    color: #FFFFFF;
     }
 
     span {
 	    text-align: center;
 	    font-family: 'SquareFont';
-	    color: #FFFFFF;
     }
 
     .textlabel {

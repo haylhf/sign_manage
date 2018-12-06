@@ -10,7 +10,7 @@
             <tr style="height: 10%" >
                 <td width="30%" style="vertical-align: top;text-align: left" >
                     <div :class="isShowVIP?'up-left-line-vip':'up-left-line'" >
-                        <img :src="isShowVIP?'../../src/assets/img/logo_gold.png':'../../src/assets/img/logo_normal.png'"
+                        <img :src="getLogoImage()"
                              style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;" >
                     </div >
                 </td >
@@ -34,10 +34,10 @@
                                    :isVip="isShowVIP"
                                    :tagDepartList="tagList" ></StaffPage >
                         <NameListPage v-show="currentIndex == 2" ></NameListPage >
-                         <!--<el-button style="bottom: 0px" type="primary" @click="isShowVIP=!isShowVIP"-->
-                                    <!--icon="el-icon-check"-->
-                         <!--&gt;TEST-->
-                        <!--</el-button >-->
+	                    <!--<el-button style="bottom: 0px" type="primary" @click="isShowVIP=!isShowVIP"-->
+	                    <!--icon="el-icon-check"-->
+	                    <!--&gt;TEST-->
+	                    <!--</el-button >-->
                     </div >
                 </td >
             </tr >
@@ -139,7 +139,8 @@
     };
 
     window.onclick = () => {
-	    requestFullScreen();
+//	    requestFullScreen();
+	    _this.btnTest();
     };
 
     function onConnectionLost(responseObject) {
@@ -280,6 +281,10 @@
 		    }
 	    },
 	    methods: {
+		    getLogoImage()
+		    {
+			    return _this.isShowVIP ? require("../assets/img/logo_gold.png") : require("../assets/img/logo_normal.png");
+		    },
 		    getTagNameByPersonId(personId) {
 			    let res = "";
 			    let tagId = _this.getTagIdByPersonId(personId);

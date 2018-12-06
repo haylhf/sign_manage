@@ -14,7 +14,7 @@
                 <td width="40%" style="text-align: center;" >
                     <div style="text-align: center;" v-show="showSignView" >
                         <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"
-                             :style="{'animation-duration': animationDur}">
+                             :style="{'animation-duration': animationDur}" >
                             <img :src="u.photo"
                                  style="width: 252px;height: 252px;border-radius: 50%;
                                  align-items: center;justify-content: center;
@@ -142,11 +142,14 @@
 		    getAnimationDuration()
 		    {
 			    let delayTime = 600;
-			    if (_this.userDataList.length > 2 && _this.userDataList.length <= 5) {
+			    if (_this.userDataList.length == 2) {
 				    delayTime = 450;
 			    }
-			    if (_this.userDataList.length > 5) {
-				    delayTime = 300;
+			    if (_this.userDataList.length == 3) {
+				    delayTime = 350;
+			    }
+			    if (_this.userDataList.length >= 4) {
+				    delayTime = 250;
 			    }
 			    return `${delayTime}ms`
 		    },
@@ -202,7 +205,7 @@
 				    _this.rightStaffList = [];
 				    _this.animationList = [];
 				    isloadData = false;
-                    isNeedNowPlay = true;
+				    isNeedNowPlay = true;
 			    }
 			    if (!infoList || infoList.length == 0) {
 				    return;
@@ -212,7 +215,7 @@
 			    }
 			    else {
 				    _this.userDataList = infoList;
-                    isNeedNowPlay = true;
+				    isNeedNowPlay = true;
 			    }
 			    if (isNeedNowPlay) {
 				    _this.showToUIAndPlay();

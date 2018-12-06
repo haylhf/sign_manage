@@ -476,6 +476,89 @@
     "score": 0,
     "timestamp": 0,
     "track_id": "string"
+  },
+  {
+    "device_id": "string",
+    "face_id": "string",
+    "face_image_id": "string",
+    "identity": "STRANGER",
+    "person": {
+      "face_list": [
+        {
+          "face_id": "string",
+          "face_image_id": "string",
+          "scene_image_id": "string"
+        }
+      ],
+      "identity": "STAFF",
+      "meta": {},
+      "person_id": "5c0365cf39f4996f237370b1",
+      "person_information": {
+        "birthday": "string",
+        "company": "string",
+        "employed_date": "string",
+        "id": "string",
+        "identity_number": "string",
+        "name": "string${id + 2}",
+        "phone": "string",
+        "remark": "string",
+        "visit_end_timestamp": 0,
+        "visit_purpose": "0",
+        "visit_start_timestamp": 0,
+        "visit_time_type": "0",
+        "visitee_name": "string"
+      },
+      "tag_id_list": [
+        "string"
+      ],
+      "upload_time": 0
+    },
+    "scene_image_id": "string",
+    "score": 0,
+    "timestamp": 0,
+    "track_id": "string"
+  }
+  ,
+  {
+    "device_id": "string",
+    "face_id": "string",
+    "face_image_id": "string",
+    "identity": "STRANGER",
+    "person": {
+      "face_list": [
+        {
+          "face_id": "string",
+          "face_image_id": "string",
+          "scene_image_id": "string"
+        }
+      ],
+      "identity": "STAFF",
+      "meta": {},
+      "person_id": "5c0365cf39f4996f237370b1",
+      "person_information": {
+        "birthday": "string",
+        "company": "string",
+        "employed_date": "string",
+        "id": "string",
+        "identity_number": "string",
+        "name": "string${id + 2}",
+        "phone": "string",
+        "remark": "string",
+        "visit_end_timestamp": 0,
+        "visit_purpose": "0",
+        "visit_start_timestamp": 0,
+        "visit_time_type": "0",
+        "visitee_name": "string"
+      },
+      "tag_id_list": [
+        "string"
+      ],
+      "upload_time": 0
+    },
+    "scene_image_id": "string",
+    "score": 0,
+    "timestamp": 0,
+    "track_id": "string"
   }
 ]`
 			    ));//方法1

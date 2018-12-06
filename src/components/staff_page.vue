@@ -13,7 +13,8 @@
                 </td >
                 <td width="40%" style="text-align: center;" >
                     <div style="text-align: center;" v-show="showSignView" >
-                        <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip" >
+                        <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"
+                             :style="{'animation-duration': animationDur}">
                             <img :src="u.photo"
                                  style="width: 252px;height: 252px;border-radius: 50%;
                                  align-items: center;justify-content: center;
@@ -26,7 +27,9 @@
                                 </div >
                             </div >
                         </div >
-                        <div v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member" >
+                        <div v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member"
+                             :style="{'animation-duration': animationDur}"
+                        >
                             <img :src="u.photo"
                                  style="width: 200px;height: 200px;border-radius: 50%;
                                  align-items: center;justify-content: center;
@@ -132,9 +135,21 @@
 			    userDataList: [],
 			    showSignView: false,
 			    isVip: false,
+			    animationDur: '600ms'
 		    }
 	    },
 	    methods: {
+		    getAnimationDuration()
+		    {
+			    let delayTime = 600;
+			    if (_this.userDataList.length > 2 && _this.userDataList.length <= 5) {
+				    delayTime = 450;
+			    }
+			    if (_this.userDataList.length > 5) {
+				    delayTime = 300;
+			    }
+			    return `${delayTime}ms`
+		    },
 		    updateDepartmentData(infoList, tagList) {
 			    _this.tagDepartList = tagList;
 			    for (let item of infoList) {
@@ -179,7 +194,7 @@
 		    },
 
 		    updateStaffData(infoList, isShowVIP) {
-			    let isNeedUpdate = false;
+			    let isNeedNowPlay = false;
 			    if (_this.isVip != isShowVIP) {
 				    _this.isVip = isShowVIP
 				    _this.userDataList = [];
@@ -187,7 +202,7 @@
 				    _this.rightStaffList = [];
 				    _this.animationList = [];
 				    isloadData = false;
-				    isNeedUpdate = true;
+                    isNeedNowPlay = true;
 			    }
 			    if (!infoList || infoList.length == 0) {
 				    return;
@@ -197,10 +212,10 @@
 			    }
 			    else {
 				    _this.userDataList = infoList;
-				    isNeedUpdate = true;
+                    isNeedNowPlay = true;
 			    }
-			    if (isNeedUpdate) {
-                    _this.showToUIAndPlay();
+			    if (isNeedNowPlay) {
+				    _this.showToUIAndPlay();
 			    }
 		    },
 
@@ -211,6 +226,7 @@
 			    isloadData = true;
 			    _this.showSignView = true;
 			    console.log("showToUIAndPlay")
+			    _this.animationDur = _this.getAnimationDuration();
 			    if (_this.userDataList.length > 0) {
 				    let data = null;
 				    try {
@@ -258,7 +274,7 @@
 					    catch (ex) {
 						    console.log(ex);
 					    }
-				    }, 50)
+				    }, 0)
 
 				    try {
 					    if (_this.rightStaffList.length >= MaxShowCount) {
@@ -328,7 +344,7 @@
 	    width: 420px;
 	    height: 680px;
 	    margin-left: 25%;
-	    animation-duration: 800ms;
+	    /*animation-duration: 600ms;*/
 	    background-image: url('../../src/assets/img/card_menber.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;
@@ -338,7 +354,7 @@
 	    width: 420px;
 	    height: 680px;
 	    margin-left: 25%;
-	    animation-duration: 800ms;
+	    /*animation-duration: 600ms;*/
 	    background-image: url('../../src/assets/img/vip/card_vip.png');
 	    background-repeat: no-repeat;
 	    background-size: 100%;

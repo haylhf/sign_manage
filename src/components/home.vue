@@ -3,9 +3,14 @@
     <!--style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;"-->
     <!--v-show="!showAD" />-->
     <div style="min-width: 100%;min-height: 100%;position: fixed;" >
-        <video :src="getVideoBg()" autoplay muted loop
+        <video v-show="!showAD" :src="getVideoBg()" autoplay muted loop
                style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;" >
         </video >
+        <video v-show="showAD" :src="getVideoWelcomeBg()" autoplay muted loop
+               style="min-width: 100%;min-height: 100%;position: fixed;z-index: -100;right:0; bottom: 0;" >
+        </video >
+        <img v-show="showAD" :src="getWelcomeBg()"
+             style="text-align:center;align-items: center; margin-left: -150px;margin-top: -170px; left: 50%;top: 50%;position: fixed;z-index: -100;" >
         <table style="width: 100%;height: 100%;position: fixed;" >
             <tr style="height: 10%" >
                 <td width="30%" style="vertical-align: top;text-align: left" >
@@ -187,6 +192,7 @@
 				    if (_this.currentIndex == 1) {
 					    if (_this.$refs.staffPage) {
 						    _this.$refs.staffPage.resetUI();
+						    _this.showAD = true;
 					    }
 				    }
 				    break;
@@ -208,8 +214,10 @@
 			    clearTimeout(showADTimerId);
 		    }
 		    showADTimerId = setTimeout(() => {
-			    _this.showAD = true;
-		    }, 1000 * 60 * 2);
+			    if (_this.currentIndex == 1) {
+				    _this.showAD = true;
+			    }
+		    }, 1000 * 20);
 
 		    for (let i = 0; i < signDataList.length; i++) {
 			    let signData = signDataList[i];
@@ -281,6 +289,20 @@
 		    }
 	    },
 	    methods: {
+
+		    getVideoBg() {
+			    var bg = require('../assets/img/signed_bg.mp4');
+			    return bg;
+		    },
+		    getVideoWelcomeBg()
+		    {
+			    var bg = require('../assets/img/bg_waiting.mp4');
+			    return bg;
+		    },
+		    getWelcomeBg() {
+			    var bg = require('../assets/img/text_welcome.png');
+			    return bg;
+		    },
 		    getLogoImage()
 		    {
 			    return _this.isShowVIP ? require("../assets/img/logo_gold.png") : require("../assets/img/logo_normal.png");
@@ -335,18 +357,13 @@
 		    onMenuChanged(newKey) {
 			    if (_this.currentIndex != newKey) {
 				    _this.currentIndex = newKey;
+				    _this.showAD = _this.currentIndex == 1;
 				    _this.isShowVIP = false;
 				    if (_this.$refs.staffPage) {
 					    _this.$refs.staffPage.updateStaffData([], _this.isShowVIP);
 				    }
-
 			    }
 			    console.log("selected changed " + newKey);
-		    },
-
-		    getVideoBg() {
-			    var bg = require('../assets/img/signed_bg.mp4');
-			    return bg;
 		    },
 
 		    btnTest() {

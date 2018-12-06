@@ -291,6 +291,7 @@
 			    }
 			    else {
 				    isloadData = false;
+				    _this.resetAnimation();
 			    }
 		    },
 		    resetAnimation()

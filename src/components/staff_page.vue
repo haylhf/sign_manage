@@ -93,7 +93,7 @@
     });
 
     var MaxShowCount = 5;
-    var resetId = 0;
+    var resetId = null;
     var isloadData = false;
     var _this
     export default {
@@ -244,41 +244,6 @@
 				    catch (ex) {
 					    console.log(ex);
 				    }
-				    setTimeout(()=> {
-					    try {
-						    if (_this.isVip) {
-							    $('#photoVip').animateCss('flipInY', () => {
-								    if (_this.userDataList.length > 0) {
-									    $('#photoVip').animateCss('zoomOutRight', () => {
-										    isloadData = false;
-										    _this.showToUIAndPlay();
-									    });
-								    }
-								    else {
-									    isloadData = false;
-									    _this.resetAnimation();
-								    }
-							    });
-						    } else {
-							    $('#photo').animateCss('flipInY', () => {
-								    if (_this.userDataList.length > 0) {
-									    $('#photo').animateCss('zoomOutRight', () => {
-										    isloadData = false;
-										    _this.showToUIAndPlay();
-									    });
-								    }
-								    else {
-									    isloadData = false;
-									    _this.resetAnimation();
-								    }
-							    });
-						    }
-					    }
-					    catch (ex) {
-						    console.log(ex);
-					    }
-				    }, 0)
-
 				    try {
 					    if (_this.rightStaffList.length >= MaxShowCount) {
 						    _this.rightStaffList.splice(_this.rightStaffList.length - 1, 1)
@@ -287,15 +252,63 @@
 					    console.log(ex);
 				    }
 				    _this.rightStaffList.unshift(data);
-
+				    if (_this.userDataList.length < 10) {
+					    _this.playAnimationByUserData();
+				    } else {
+					    isloadData = false;
+					    _this.showToUIAndPlay();//continue next item
+				    }
 			    }
 			    else {
 				    isloadData = false;
 				    _this.resetAnimation();
 			    }
 		    },
+
+		    playAnimationByUserData() {
+			    setTimeout(()=> {
+				    try {
+					    if (_this.isVip) {
+						    $('#photoVip').animateCss('flipInY', () => {
+							    if (_this.userDataList.length > 0) {
+								    $('#photoVip').animateCss('zoomOutRight', () => {
+									    isloadData = false;
+									    _this.showToUIAndPlay();
+								    });
+							    }
+							    else {
+								    isloadData = false;
+								    _this.resetAnimation();
+							    }
+						    });
+					    } else {
+						    $('#photo').animateCss('flipInY', () => {
+							    if (_this.userDataList.length > 0) {
+								    $('#photo').animateCss('zoomOutRight', () => {
+									    isloadData = false;
+									    _this.showToUIAndPlay();
+								    });
+							    }
+							    else {
+								    isloadData = false;
+								    _this.resetAnimation();
+							    }
+						    });
+					    }
+				    }
+				    catch (ex) {
+					    console.log(ex);
+					    isloadData = false;
+					    _this.showToUIAndPlay();
+				    }
+			    }, 0)
+		    },
+
 		    resetAnimation()
 		    {
+			    if (resetId != null) {
+				    window.clearTimeout(resetId);
+			    }
 			    resetId = setTimeout(()=> {
 				    let dtime = new Date() - _this.animationList[0].showTime; // 计算时间差
 				    let diffSeconds = Math.floor(dtime / (1000));//总秒数差值
@@ -304,7 +317,6 @@
 						    _this.showSignView = false;
 					    }
 				    }
-				    window.clearTimeout(resetId);
 			    }, 16 * 1000)
 		    },
 

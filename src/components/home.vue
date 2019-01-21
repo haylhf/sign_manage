@@ -23,6 +23,7 @@
                     <MenuButton ref="menuButton" :menuList="menuList"
                                 :menuChanged="onMenuChanged"
                                 :isVip="isShowVIP"
+                                style="margin-left: 60px"
                     ></MenuButton >
                 </td >
                 <td width="30%" style="text-align: right" >
@@ -373,216 +374,133 @@
 		    btnTest() {
 
 			    var id = Math.round(Math.random() * 1000000);
-			    onVisitorSign(JSON.parse(`
-[
-  {
-    "device_id": "string",
-    "face_id": "string",
-    "face_image_id": "string",
-    "identity": "STRANGER",
-    "person": {
-      "face_list": [
-        {
-          "face_id": "string",
-          "face_image_id": "string",
-          "scene_image_id": "string"
-        }
-      ],
-      "identity": "STAFF",
-      "meta": {},
-      "person_id": "5c05403139f499088cfabc0f",
-      "person_information": {
-        "birthday": "string",
-        "company": "string",
-        "employed_date": "string",
-        "id": "string",
-        "identity_number": "string",
-        "name": "胡通",
-        "phone": "string",
-        "remark": "string",
-        "visit_end_timestamp": 0,
-        "visit_purpose": "0",
-        "visit_start_timestamp": 0,
-        "visit_time_type": "0",
-        "visitee_name": "string"
-      },
-      "tag_id_list": [
-        "string"
-      ],
-      "upload_time": 0
-    },
-    "scene_image_id": "string",
-    "score": 0,
-    "timestamp": 0,
-    "track_id": "string"
-  },
-  {
-    "device_id": "string",
-    "face_id": "string",
-    "face_image_id": "string",
-    "identity": "STRANGER",
-    "person": {
-      "face_list": [
-        {
-          "face_id": "string",
-          "face_image_id": "string",
-          "scene_image_id": "string"
-        }
-      ],
-      "identity": "STAFF",
-      "meta": {},
-      "person_id": "5c038e8439f4996f237370bb",
-      "person_information": {
-        "birthday": "string",
-        "company": "string",
-        "employed_date": "string",
-        "id": "string",
-        "identity_number": "string",
-        "name": "李海峰",
-        "phone": "string",
-        "remark": "string",
-        "visit_end_timestamp": 0,
-        "visit_purpose": "0",
-        "visit_start_timestamp": 0,
-        "visit_time_type": "0",
-        "visitee_name": "string"
-      },
-      "tag_id_list": [
-        "string"
-      ],
-      "upload_time": 0
-    },
-    "scene_image_id": "string",
-    "score": 0,
-    "timestamp": 0,
-    "track_id": "string"
-  },
-  {
-    "device_id": "string",
-    "face_id": "string",
-    "face_image_id": "string",
-    "identity": "STRANGER",
-    "person": {
-      "face_list": [
-        {
-          "face_id": "string",
-          "face_image_id": "string",
-          "scene_image_id": "string"
-        }
-      ],
-      "identity": "STAFF",
-      "meta": {},
-      "person_id": "5c0365cf39f4996f237370b1",
-      "person_information": {
-        "birthday": "string",
-        "company": "string",
-        "employed_date": "string",
-        "id": "string",
-        "identity_number": "string",
-        "name": "string${id + 2}",
-        "phone": "string",
-        "remark": "string",
-        "visit_end_timestamp": 0,
-        "visit_purpose": "0",
-        "visit_start_timestamp": 0,
-        "visit_time_type": "0",
-        "visitee_name": "string"
-      },
-      "tag_id_list": [
-        "string"
-      ],
-      "upload_time": 0
-    },
-    "scene_image_id": "string",
-    "score": 0,
-    "timestamp": 0,
-    "track_id": "string"
-  },
-  {
-    "device_id": "string",
-    "face_id": "string",
-    "face_image_id": "string",
-    "identity": "STRANGER",
-    "person": {
-      "face_list": [
-        {
-          "face_id": "string",
-          "face_image_id": "string",
-          "scene_image_id": "string"
-        }
-      ],
-      "identity": "STAFF",
-      "meta": {},
-      "person_id": "5c0365cf39f4996f237370b1",
-      "person_information": {
-        "birthday": "string",
-        "company": "string",
-        "employed_date": "string",
-        "id": "string",
-        "identity_number": "string",
-        "name": "string${id + 2}",
-        "phone": "string",
-        "remark": "string",
-        "visit_end_timestamp": 0,
-        "visit_purpose": "0",
-        "visit_start_timestamp": 0,
-        "visit_time_type": "0",
-        "visitee_name": "string"
-      },
-      "tag_id_list": [
-        "string"
-      ],
-      "upload_time": 0
-    },
-    "scene_image_id": "string",
-    "score": 0,
-    "timestamp": 0,
-    "track_id": "string"
-  }
-  ,
-  {
-    "device_id": "string",
-    "face_id": "string",
-    "face_image_id": "string",
-    "identity": "STRANGER",
-    "person": {
-      "face_list": [
-        {
-          "face_id": "string",
-          "face_image_id": "string",
-          "scene_image_id": "string"
-        }
-      ],
-      "identity": "STAFF",
-      "meta": {},
-      "person_id": "5c0365cf39f4996f237370b1",
-      "person_information": {
-        "birthday": "string",
-        "company": "string",
-        "employed_date": "string",
-        "id": "string",
-        "identity_number": "string",
-        "name": "string${id + 2}",
-        "phone": "string",
-        "remark": "string",
-        "visit_end_timestamp": 0,
-        "visit_purpose": "0",
-        "visit_start_timestamp": 0,
-        "visit_time_type": "0",
-        "visitee_name": "string"
-      },
-      "tag_id_list": [
-        "string"
-      ],
-      "upload_time": 0
-    },
-    "scene_image_id": "string",
-    "score": 0,
-    "timestamp": 0,
-    "track_id": "string"
-  }
-]`
-			    ));//方法1
+                onVisitorSign(JSON.parse(`
+                    [
+                      {
+                        "device_id": "string",
+                        "face_id": "string",
+                        "face_image_id": "string",
+                        "identity": "STRANGER",
+                        "person": {
+                          "face_list": [
+                            {
+                              "face_id": "string",
+                              "face_image_id": "5be96c8d39f4996f237368a8",
+                              "scene_image_id": "string"
+                            }
+                          ],
+                          "identity": "STAFF",
+                          "meta": {},
+                          "person_id": "5c05403139f499088cfabc0f",
+                          "person_information": {
+                            "birthday": "string",
+                            "company": "string",
+                            "employed_date": "string",
+                            "id": "string",
+                            "identity_number": "string",
+                            "name": "胡通",
+                            "phone": "string",
+                            "remark": "string",
+                            "visit_end_timestamp": 0,
+                            "visit_purpose": "0",
+                            "visit_start_timestamp": 0,
+                            "visit_time_type": "0",
+                            "visitee_name": "string"
+                          },
+                          "tag_id_list": [
+                            "string"
+                          ],
+                          "upload_time": 0
+                        },
+                        "scene_image_id": "string",
+                        "score": 0,
+                        "timestamp": 0,
+                        "track_id": "string"
+                      },
+                      {
+                        "device_id": "string",
+                        "face_id": "string",
+                        "face_image_id": "string",
+                        "identity": "STRANGER",
+                        "person": {
+                          "face_list": [
+                            {
+                              "face_id": "string",
+                              "face_image_id": "5c08c52339f49907e8a850b9",
+                              "scene_image_id": "string"
+                            }
+                          ],
+                          "identity": "STAFF",
+                          "meta": {},
+                          "person_id": "5c038e8439f4996f237370bb",
+                          "person_information": {
+                            "birthday": "string",
+                            "company": "string",
+                            "employed_date": "string",
+                            "id": "string",
+                            "identity_number": "string",
+                            "name": "李玮",
+                            "phone": "string",
+                            "remark": "string",
+                            "visit_end_timestamp": 0,
+                            "visit_purpose": "0",
+                            "visit_start_timestamp": 0,
+                            "visit_time_type": "0",
+                            "visitee_name": "string"
+                          },
+                          "tag_id_list": [
+                            "string"
+                          ],
+                          "upload_time": 0
+                        },
+                        "scene_image_id": "string",
+                        "score": 0,
+                        "timestamp": 0,
+                        "track_id": "string"
+                      },
+                      {
+                        "device_id": "string",
+                        "face_id": "string",
+                        "face_image_id": "string",
+                        "identity": "STRANGER",
+                        "person": {
+                          "face_list": [
+                            {
+                              "face_id": "string",
+                              "face_image_id": "5c0809f0a7986c07b7d753f8",
+                              "scene_image_id": "string"
+                            }
+                          ],
+                          "identity": "STAFF",
+                          "meta": {},
+                          "person_id": "5c05403139f499088cfabc0f",
+                          "person_information": {
+                            "birthday": "string",
+                            "company": "string",
+                            "employed_date": "string",
+                            "id": "string",
+                            "identity_number": "string",
+                            "name": "费费",
+                            "phone": "string",
+                            "remark": "string",
+                            "visit_end_timestamp": 0,
+                            "visit_purpose": "0",
+                            "visit_start_timestamp": 0,
+                            "visit_time_type": "0",
+                            "visitee_name": "string"
+                          },
+                          "tag_id_list": [
+                            "string"
+                          ],
+                          "upload_time": 0
+                        },
+                        "scene_image_id": "string",
+                        "score": 0,
+                        "timestamp": 0,
+                        "track_id": "string"
+                      }
+                    ]`
+                ));//方法1
 		    },
 
 		    getBgImg() {

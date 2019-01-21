@@ -1,18 +1,19 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
+<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+          xmlns:display="http://www.w3.org/1999/xhtml">
     <div >
         <table style="width: 100%;height: 100%;" >
             <tr >
-                <td width="30%" style="text-align: center;" >
+                <td width="20%" style="text-align: center;" >
                     <StaffDepartControl
 		                    style="margin-left: 25%;margin-top: 40px;
-		                    -webkit-transform: skew(1deg);
-		                    -webkit-transform-origin: right;"
+		                     -webkit-transform: skew(1deg);
+		                     -webkit-transform-origin: right;"
 		                    v-for="item in leftDeparList"
 		                    :isVip="isVip"
 		                    :departInfo="item" ></StaffDepartControl >
                 </td >
-                <td width="40%" style="text-align: center;" >
-                    <div style="text-align: center;" v-show="showSignView" >
+                <td width="60%" style="text-align: center;" >
+                    <el-row v-show="showSignView" type="flex" class="row-bg" justify="center">
                         <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"
                              :style="{'animation-duration': animationDur}" >
                             <img :src="u.photo"
@@ -27,9 +28,8 @@
                                 </div >
                             </div >
                         </div >
-                        <div v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member"
-                             :style="{'animation-duration': animationDur}"
-                        >
+                        <el-col :span="7" v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member"
+                             :style="{'animation-duration': animationDur}" >
                             <img :src="u.photo"
                                  style="width: 200px;height: 200px;border-radius: 50%;
                                  align-items: center;justify-content: center;
@@ -44,11 +44,11 @@
                                     {{u.id != null ? u.id : u.departName}}
                                 </span >
                             </div >
-                        </div >
-                    </div >
+                        </el-col >
+                    </el-row >
                 </td >
-                <td width="30%" style="text-align: center;" >
-                    <div style="margin-left: 40%; margin-top: 10px;" >
+                <td width="20%" style="text-align: center;" >
+                    <div style="margin-left: 20%; margin-top: 10px;" >
                         <StaffInfoControl style="margin-bottom: 40px;"
                                           v-for="item in rightStaffList"
                                           :staffInfo="item"
@@ -92,7 +92,7 @@
 	    },
     });
 
-    var MaxShowCount = 5;
+    var MaxShowCount = 6;
     var resetId = null;
     var isloadData = false;
     var _this
@@ -233,7 +233,10 @@
 						    data.showTime = new Date();
 						    break;
 					    }
-					    _this.animationList[0] = data;
+					    if(_this.animationList.length >= 3) {
+                            _this.animationList.splice(0,1);
+                        }
+					    _this.animationList.push(data);
 				    }
 				    catch (ex) {
 					    console.log(ex);
@@ -246,6 +249,7 @@
 					    console.log(ex);
 				    }
 				    _this.rightStaffList.unshift(data);
+				    console.log("userDataList size: " + _this.userDataList.length);
 				    if (_this.userDataList.length < 10) {
 					    _this.playAnimationByUserData();
 				    } else {
@@ -276,9 +280,9 @@
 							    }
 						    });
 					    } else {
-						    $('#photo').animateCss('flipInY', () => {
-							    if (_this.userDataList.length > 0) {
-								    $('#photo').animateCss('zoomOutRight', () => {
+						    // $('#photo').animateCss('flipInY', () => {
+							    if (_this.userDataList.length >= 0) {
+								    $('#photo').animateCss('zoomOutLeft', () => {
 									    isloadData = false;
 									    _this.showToUIAndPlay();
 								    });
@@ -287,7 +291,7 @@
 								    isloadData = false;
 								    _this.resetAnimation();
 							    }
-						    });
+						    // });
 					    }
 				    }
 				    catch (ex) {
@@ -353,7 +357,7 @@
     .card-member {
 	    width: 420px;
 	    height: 680px;
-	    margin-left: 25%;
+	    margin-left: 2%;
 	    /*animation-duration: 600ms;*/
 	    background-image: url('../../src/assets/img/card_menber.png');
 	    background-repeat: no-repeat;

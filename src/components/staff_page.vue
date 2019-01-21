@@ -16,18 +16,15 @@
                         <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"
                              :style="{'animation-duration': animationDur}" >
                             <img :src="u.photo"
-                                 style="width: 200px;height: 200px;border-radius: 50%;
+                                 style="width: 235px;height: 235px;border-radius: 50%;
                                  align-items: center;justify-content: center;
                                  overflow: hidden;
-                                 margin-top: 131px;margin-left: 6px;" />
+                                 margin-top: 100px;margin-left: 6px;" />
                             <div class="col-center-block text-center label" >
-                                <div style="min-height: 80px;margin-top: 40px;
+                                <div style="min-height: 80px;margin-top: 120px;
                                      font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >
                                     {{u.name}}
                                 </div >
-                                <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;" >
-                                    {{u.id != null ? u.id : u.departName}}
-                                </span >
                             </div >
                         </div >
                         <div v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member"

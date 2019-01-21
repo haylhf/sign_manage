@@ -159,7 +159,11 @@
                 }
             },
             getImage(item) {
-                return PHOTO_URL + item.face_list[0].face_image_id;
+                if(isUndefined(item.face_list) || item.face_list.length > 0) {
+                    return PHOTO_URL + item.face_list[0].face_image_id;
+                } else {
+                    return require('../assets/img/male.png');
+                }
             },
             getMemberBgStyle(staffId, signInRecord) {
                 let found = false;

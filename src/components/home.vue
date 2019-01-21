@@ -228,7 +228,11 @@
 			    }
 			    data.device_id = signData.device_id;
 			    //data.photo = require('../assets/img/male.png'); //`http://api.vaiwan.com:8081/image/${signData.person.face_list[0].face_image_id}`;
-			    data.photo = `${PHOTO_URL}${signData.person.face_list[0].face_image_id}`;
+			    if(isUndefined(signData.person.face_list) || signData.person.face_list.length == 0) {
+			        data.photo = require('../assets/img/male.png');
+                } else {
+                    data.photo = `${PHOTO_URL}${signData.person.face_list[0].face_image_id}`;
+                }
 			    data.person_id = signData.person.person_id;
 			    data.departName = _this.getTagNameByPersonId(data.person_id);
 			    dataList.push(data);

@@ -1,14 +1,14 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml" >
     <div style="width: 220px;height: 40px;" >
         <el-row >
-            <el-col :span="12" >
+            <el-col :span="19" >
                 <span :style="{'float': 'left',
                  'font-size':'14px',
                  'font-family': 'PingFangSC-Semibold',
                  'color':isVip?'#D6BE98':'#FFFFFF'
                  }" >{{departInfo.departName}}</span >
             </el-col >
-            <el-col :span="8" :offset="4" >
+            <el-col :span="5" >
                 <span :style="{'float': 'right',
                  'font-size':'18px',
                  'font-family': 'SquareFont',

@@ -139,6 +139,27 @@
 		    }
 	    },
 	    methods: {
+            showDepartment(departmentItem) {
+                var departmentName = "";
+                for (let item of _this.tagDepartList) {
+                    if (item.tag_id === departmentItem.tagId) {
+                        departmentName = item.tag_name;
+                        break;
+                    }
+                }
+                if(departmentName === "") return false;
+
+                if(departmentName != null && (departmentName === "人力资源部（外事办公室）"
+                    || departmentName === "计划财务部"
+                    || departmentName === "集中采购管理办公室"
+                    || departmentName === "银联科技事业部"
+                    || departmentName === "办公室"
+                    || departmentName === "审计")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
 		    getAnimationDuration()
 		    {
 			    let delayTime = 1000;
@@ -160,6 +181,7 @@
 					    }
 				    }
 				    if (!isFound) {
+				        if(!_this.showDepartment(item)) continue;
 					    try {
 						    if (_this.leftDeparList.length >= MaxShowCount) {
 							    _this.leftDeparList.splice(0, 1)

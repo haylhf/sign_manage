@@ -13,10 +13,10 @@
              style="text-align:center;align-items: center; margin-left: -150px;margin-top: -170px; left: 50%;top: 50%;position: fixed;z-index: -100;" >
         <table style="width: 100%;height: 100%;position: fixed;" >
             <tr style="height: 10%" >
-                <td width="30%" style="vertical-align: top;text-align: left" >
+                <td width="30%" style="vertical-align: top;text-align: left" @click="toSetDeviceIds()" >
                     <div :class="isShowVIP?'up-left-line-vip':'up-left-line'" >
                         <img :src="getLogoImage()"
-                             style="height: 35px;margin-top: 10px; margin-left: 120px; top: 0px; width: 200px;" >
+                             style="height: 45px;margin-top: 5px; margin-left: 120px; top: 0px; width: 200px;" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
@@ -71,6 +71,16 @@
                 </td >
             </tr >
         </table >
+        <el-dialog title="签到设备" :visible.sync="confirmCancelDialog" width="30%"
+                   :modal="false" >
+                <el-input v-model="deviceIDList" placeholder="设备ID以逗号隔开"></el-input>
+            <span slot="footer" class="dialog-footer" >
+                <el-button @click="confirmCancelDialog = false"
+                           icon="el-icon-close" >取 消</el-button >
+                <el-button type="primary" @click="saveDeviceID()"
+                           icon="el-icon-check" >确 定</el-button >
+            </span >
+        </el-dialog >
     </div >
 </template >
 
@@ -221,7 +231,16 @@
 		    }, 1000 * 20);
 
 		    for (let i = 0; i < signDataList.length; i++) {
+
 			    let signData = signDataList[i];
+                //如果在session中device_ids不为空，则只监听对应设备的ID
+                if(!isUndefined(window.sessionStorage.getItem("device_id_list"))
+                    && window.sessionStorage.getItem("device_id_list") !== ''
+                    && window.sessionStorage.getItem("device_id_list") !== null) {
+                    if(window.sessionStorage.getItem("device_id_list").indexOf(signData.device_id) === -1) {
+                        continue;
+                    }
+                }
 			    let data = Object.assign(signData.person.person_information);
 			    try {
 				    data.signTime = new Date(signData.timestamp * 1000).format("hh:mm:ss");
@@ -291,10 +310,21 @@
 			    currentIndex: "1",
 			    departmentSignData: [],
 			    tagList: [],
+                confirmCancelDialog: false,
+                deviceIDList:"",
 		    }
 	    },
 	    methods: {
-
+            toSetDeviceIds() {
+              _this.confirmCancelDialog = true;
+              _this.deviceIDList = window.sessionStorage.getItem("device_id_list");
+            },
+            saveDeviceID() {
+                console.log("_this.deviceIDList" + _this.deviceIDList);
+                window.sessionStorage.setItem("device_id_list", _this.deviceIDList);
+                _this.confirmCancelDialog = false;
+                showMessage(_this, "保存成功", 1);
+            },
 		    getVideoBg() {
 			    var bg = require('../assets/img/signed_bg.mp4');
 			    return bg;

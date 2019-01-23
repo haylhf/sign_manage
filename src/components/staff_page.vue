@@ -34,7 +34,7 @@
                                  style="width: 230px;height: 230px;border-radius: 50%;
                                  align-items: center;justify-content: center;
                                  overflow: hidden;
-                                 margin-top: 110px;margin-left: 6px;" />
+                                 margin-top: 108px;margin-left: 6px;" />
                             <div class="col-center-block text-center label" >
                                 <div style="min-height: 80px;margin-top: 40px;
                                      font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >
@@ -238,7 +238,7 @@
                         }
 					    _this.animationList.push(data);
 					    setTimeout(()=>{
-                            $(document.getElementById('container').lastChild).animateCss("flash");
+                            $(document.getElementById('container').lastChild).animateCss("flipInY");
                         },50)
 				    }
 				    catch (ex) {
@@ -253,7 +253,7 @@
 				    }
 				    _this.rightStaffList.unshift(data);
 				    console.log("userDataList size: " + _this.userDataList.length);
-				    if (_this.userDataList.length < 10) {
+				    if (_this.userDataList.length < 10 ) {
 					    _this.playAnimationByUserData();
 				    } else {
 					    isloadData = false;
@@ -291,9 +291,12 @@
 								    });
 							    }
 							    else {
-                                    $('#photo').animateCss('zoomOutLeft', () => {
 
-                                    });
+							        if(_this.animationList.length > 2) {
+                                        $('#photo').animateCss('zoomOutLeft', () => {
+
+                                        });
+                                    }
 								    isloadData = false;
 								    _this.resetAnimation();
 							    }
@@ -319,6 +322,9 @@
 				    if (diffSeconds >= 15) {//超过15s
 					    if (_this.userDataList.length == 0) {
 						    _this.showSignView = false;
+						    while(_this.animationList.length > 0) {
+                                _this.animationList.pop();
+                            }
 					    }
 				    }
 			    }, 30 * 1000)

@@ -145,8 +145,8 @@
     };
 
     window.onclick = () => {
-//	    requestFullScreen();
-	    _this.btnTest();
+	    requestFullScreen();
+	    //_this.btnTest();
     };
 
     function onConnectionLost(responseObject) {
@@ -595,6 +595,7 @@
 			    _this.getTotalUserCount();
 			    _this.getSigninUserCount();
 			    _this.fetchTag();
+			    //不在产生过人记录时就去更新部门信息
 			    _this.fetTotalSignData();
 			    setTimeout(() => {
 				    if (_this.currentIndex == 1) {
@@ -620,6 +621,7 @@
 //			    _this.btnTest();
 
 		    }, 2000);//定时器
+            _this.fetTotalSignData();
 
 	    },
 	    destroyed: function () {

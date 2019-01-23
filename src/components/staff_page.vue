@@ -13,35 +13,35 @@
 		                    :departInfo="item" ></StaffDepartControl >
                 </td >
                 <td width="60%" style="text-align: center;" >
-                    <el-row v-show="showSignView" type="flex" class="row-bg" justify="center">
-                        <div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"
-                             :style="{'animation-duration': animationDur}" >
-                            <img :src="u.photo"
-                                 style="width: 235px;height: 235px;border-radius: 50%;
-                                 align-items: center;justify-content: center;
-                                 overflow: hidden;
-                                 margin-top: 100px;margin-left: 6px;" />
-                            <div class="col-center-block text-center label" >
-                                <div style="min-height: 80px;margin-top: 120px;
-                                     font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >
-                                    {{u.name}}
-                                </div >
-                            </div >
-                        </div >
+                    <el-row v-show="showSignView" type="flex" class="row-bg" justify="center" id="container">
+                        <!--<div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"-->
+                             <!--:style="{'animation-duration': animationDur}" >-->
+                            <!--<img :src="u.photo"-->
+                                 <!--style="width: 235px;height: 235px;border-radius: 50%;-->
+                                 <!--align-items: center;justify-content: center;-->
+                                 <!--overflow: hidden;-->
+                                 <!--margin-top: 100px;margin-left: 6px;" />-->
+                            <!--<div class="col-center-block text-center label" >-->
+                                <!--<div style="min-height: 80px;margin-top: 120px;-->
+                                     <!--font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >-->
+                                    <!--{{u.name}}-->
+                                <!--</div >-->
+                            <!--</div >-->
+                        <!--</div >-->
                         <el-col :span="7" v-show="isVip==false" id="photo" v-for="u in animationList" class="card-member"
                              :style="{'animation-duration': animationDur}" >
                             <img :src="u.photo"
-                                 style="width: 200px;height: 200px;border-radius: 50%;
+                                 style="width: 230px;height: 230px;border-radius: 50%;
                                  align-items: center;justify-content: center;
                                  overflow: hidden;
-                                 margin-top: 131px;margin-left: 6px;" />
+                                 margin-top: 110px;margin-left: 6px;" />
                             <div class="col-center-block text-center label" >
                                 <div style="min-height: 80px;margin-top: 40px;
                                      font-size: 48px;color: #FFFFFF;font-family: PingFangSC-Semibold;" >
                                     {{u.name}}
                                 </div >
                                 <span style="font-size: 24px;color: #FFFFFF;font-family: SquareFont;" >
-                                    {{u.id != null ? u.id : u.departName}}
+                                    {{u.departName != null ? u.departName : u.id}}
                                 </span >
                             </div >
                         </el-col >
@@ -237,6 +237,9 @@
                             _this.animationList.splice(0,1);
                         }
 					    _this.animationList.push(data);
+					    setTimeout(()=>{
+                            $(document.getElementById('container').lastChild).animateCss("flash");
+                        },50)
 				    }
 				    catch (ex) {
 					    console.log(ex);
@@ -281,13 +284,16 @@
 						    });
 					    } else {
 						    // $('#photo').animateCss('flipInY', () => {
-							    if (_this.userDataList.length >= 0) {
+							    if (_this.userDataList.length >= 1) {
 								    $('#photo').animateCss('zoomOutLeft', () => {
 									    isloadData = false;
 									    _this.showToUIAndPlay();
 								    });
 							    }
 							    else {
+                                    $('#photo').animateCss('zoomOutLeft', () => {
+
+                                    });
 								    isloadData = false;
 								    _this.resetAnimation();
 							    }
@@ -315,7 +321,7 @@
 						    _this.showSignView = false;
 					    }
 				    }
-			    }, 16 * 1000)
+			    }, 30 * 1000)
 		    },
 
 		    doAnimate(data) {
@@ -357,7 +363,7 @@
     .card-member {
 	    width: 420px;
 	    height: 680px;
-	    margin-left: 2%;
+	    margin-left: 3%;
 	    /*animation-duration: 600ms;*/
 	    background-image: url('../../src/assets/img/card_menber.png');
 	    background-repeat: no-repeat;

@@ -190,10 +190,11 @@
         computed: {},
         filters: {},
         created: function () {
-            intervalId = setInterval(()=>{
-                _this.fetTotalSignData();
-                console.log("fetTotalSignData");
-            }, 1000);
+	    //不进行自动的刷新
+            // intervalId = setInterval(()=>{
+            //     _this.fetTotalSignData();
+            //     console.log("fetTotalSignData");
+            // }, 1000);
         },
         mounted: function () {
             this.fetTotalSignData();

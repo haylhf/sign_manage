@@ -18,7 +18,7 @@
                           'margin-right': '2px',
                           'margin-top': '10px'
                          }" >
-                        {{staffInfo.id != null ? staffInfo.id:staffInfo.departName}}
+                        {{staffInfo.departName != null ? staffInfo.departName : staffInfo.id}}
                     </span >
                 </div >
             </el-col >

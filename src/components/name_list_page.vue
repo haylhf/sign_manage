@@ -7,10 +7,10 @@
                         <el-col :span="1">
                             <img :src="getLabel()" style="height: 40px;width: 36px">
                         </el-col>
-                        <el-col :span="5">
+                        <el-col :span="12">
                             <div class="department-title">{{filterDepartmentName(department.tagId)}}</div>
                         </el-col>
-                        <el-col :span="5" :offset="8">
+                        <el-col :span="5" :offset="3">
                             <div class="signed-percent">{{formatNumber(department.currentRecordList.length)}} /
                                 {{formatNumber(department.totalStaff.length)}}
                             </div>
@@ -21,7 +21,8 @@
                             <tr v-for="row in formatToMatrix(department.totalStaff)">
                                 <td v-for=" item in row" style="width: 225px;height: 220px">
                                     <div :class="getMemberBgStyle(item.staff_id, department.currentRecordList)">
-                                        <div class="number">{{item.person_information.id}}</div>
+                                        <!-- <div class="number">{{item.person_information.id}}</div> -->
+                                        <div class="number">MARS</div>
                                         <div style="margin-top: 12px;text-align: center">
                                             <img :src="getImage(item)"
                                                  style="width: 80px;height: 80px;border-radius: 50%;align-items: center;justify-content: center;">
@@ -185,6 +186,19 @@
                     departments[i] = _this.filterDepartmentName(signInDepartment[i].tagId)
                 }
                 return departments;
+            },
+            updateUI() {
+                this.fetTotalSignData();
+                this.fetchTag();
+                document.getElementById('div-scroll').addEventListener('scroll', ()=> {
+                    for (let i = 0; i < _this.departmentHeightList.length; i++) {
+                        if (document.getElementById('div-scroll').scrollTop < _this.departmentHeightList[i]) {
+                            _this.calculatedIndex = i;
+                            console.log("calculatedIndex: " + _this.calculatedIndex + " || " + document.getElementById('div-scroll').scrollTop);
+                            break;
+                        }
+                    }
+                })
             }
         },
         computed: {},
@@ -197,17 +211,18 @@
             // }, 1000);
         },
         mounted: function () {
-            this.fetTotalSignData();
-            this.fetchTag();
-            document.getElementById('div-scroll').addEventListener('scroll', ()=> {
-                for (let i = 0; i < _this.departmentHeightList.length; i++) {
-                    if (document.getElementById('div-scroll').scrollTop < _this.departmentHeightList[i]) {
-                        _this.calculatedIndex = i;
-                        console.log("calculatedIndex: " + _this.calculatedIndex + " || " + document.getElementById('div-scroll').scrollTop);
-                        break;
-                    }
-                }
-            })
+            // this.fetTotalSignData();
+            // this.fetchTag();
+            // document.getElementById('div-scroll').addEventListener('scroll', ()=> {
+            //     for (let i = 0; i < _this.departmentHeightList.length; i++) {
+            //         if (document.getElementById('div-scroll').scrollTop < _this.departmentHeightList[i]) {
+            //             _this.calculatedIndex = i;
+            //             console.log("calculatedIndex: " + _this.calculatedIndex + " || " + document.getElementById('div-scroll').scrollTop);
+            //             break;
+            //         }
+            //     }
+            // })
+            _this.updateUI();
         },
         destroyed: function () {
             document.getElementById("div-scroll").addEventListener('scroll', null);

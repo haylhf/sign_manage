@@ -3,16 +3,19 @@
     <div >
         <table style="width: 100%;height: 100%;" >
             <tr >
-                <td width="20%" style="text-align: center;" >
-                    <StaffDepartControl
-		                    style="margin-left: 25%;margin-top: 40px;
-		                     -webkit-transform: skew(1deg);
-		                     -webkit-transform-origin: right;"
-		                    v-for="item in leftDeparList"
-		                    :isVip="isVip"
-		                    :departInfo="item" ></StaffDepartControl >
+                <td width="18%" style="text-align: center;" >
+                    <div style=" overflow-y: auto;height: 500px">
+                        <StaffDepartControl
+                                style="margin-left: 20%;margin-top: 30px;
+		                        -webkit-transform: skew(1deg);
+		                        -webkit-transform-origin: right;"
+                                v-for="item in leftDeparList"
+                                :isVip="isVip"
+                                :departInfo="item" ></StaffDepartControl >
+                    </div>
+
                 </td >
-                <td width="60%" style="text-align: center;" >
+                <td width="62%" style="text-align: center;" >
                     <el-row v-show="showSignView" type="flex" class="row-bg" justify="center" id="container">
                         <!--<div v-show="isVip==true" id="photoVip" v-for="u in animationList" class="card-member-vip"-->
                              <!--:style="{'animation-duration': animationDur}" >-->
@@ -92,7 +95,7 @@
 	    },
     });
 
-    var MaxShowCount = 6;
+    var MaxShowCount = 12;
     var resetId = null;
     var isloadData = false;
     var _this
@@ -181,7 +184,7 @@
 					    }
 				    }
 				    if (!isFound) {
-				        if(!_this.showDepartment(item)) continue;
+				        //if(!_this.showDepartment(item)) continue;
 					    try {
 						    if (_this.leftDeparList.length >= MaxShowCount) {
 							    _this.leftDeparList.splice(0, 1)
@@ -267,7 +270,7 @@
 					    console.log(ex);
 				    }
 				    try {
-					    if (_this.rightStaffList.length >= MaxShowCount) {
+					    if (_this.rightStaffList.length >= 6) {
 						    _this.rightStaffList.splice(_this.rightStaffList.length - 1, 1)
 					    }
 				    } catch (ex) {

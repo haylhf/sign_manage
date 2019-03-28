@@ -16,7 +16,7 @@
                 <td width="30%" style="vertical-align: top;text-align: left" @click="toSetDeviceIds()" >
                     <div :class="isShowVIP?'up-left-line-vip':'up-left-line'" >
                         <img :src="getLogoImage()"
-                             style="height: 45px;margin-top: 5px; margin-left: 120px; top: 0px; width: 200px;" >
+                             style="height: 50px;margin-top: 5px; margin-left: 120px; top: 0px; width: 280px;" >
                     </div >
                 </td >
                 <td style="text-align: center;" >
@@ -39,7 +39,7 @@
                                    ref="staffPage"
                                    :isVip="isShowVIP"
                                    :tagDepartList="tagList" ></StaffPage >
-                        <NameListPage v-show="currentIndex == 2" ></NameListPage >
+                        <NameListPage ref="nameList" v-show="currentIndex == 2" ></NameListPage >
 	                    <!--<el-button style="bottom: 0px" type="primary" @click="isShowVIP=!isShowVIP"-->
 	                    <!--icon="el-icon-check"-->
 	                    <!--&gt;TEST-->
@@ -52,9 +52,9 @@
                     <div :class="isShowVIP?'down-left-line-vip':'down-left-line'" >
                         <br >
                         <div style="margin-left: 80px;" >
-                            <span class="textlabel" >签到人数</span >
+                            <span class="textlabel" >Check In</span >
                             <br >
-                            <span class="textCount" >{{getSignIn()}}</span >
+                            <span class="textCount" >{{SignInFen}}</span >
                         </div >
                     </div >
                 </td >
@@ -63,9 +63,9 @@
                     <div :class="isShowVIP?'down-right-line-vip':'down-right-line'" >
                         <br >
                         <div style="margin-right: 80px;" >
-                            <span class="textlabel" >签到率</span >
+                            <span class="textlabel" >Ratio</span >
                             <br >
-                            <span style="font-size: 48px;" >{{getPercent(signInNum,staffNum)}}</span >
+                            <span style="font-size: 48px;" >{{SignInPer}}</span >
                         </div >
                     </div >
                 </td >
@@ -88,6 +88,7 @@
     var currentInterval;
     var dataInterval;
     var showADTimerId;
+    var refrehStaticTimeout;
     var mqttReconnectInterval = null;
     var isLoading = false;
     var hostname = MqttServer,
@@ -263,7 +264,12 @@
 	    } catch (e) {
 		    console.log(e)
 	    } finally {
-		    _this.refreshData();
+	        if(refrehStaticTimeout != null) {
+	            clearTimeout(refrehStaticTimeout);
+            }
+            refrehStaticTimeout = setTimeout(()=>{
+                _this.refreshData();
+            }, 800);
 	    }
     }
 
@@ -300,11 +306,11 @@
 				    },
 				    {
 					    key: "1",
-					    text: "签到",
+					    text: "Martian",
 				    },
 				    {
 					    key: "2",
-					    text: "名单",
+					    text: "Name List",
 				    }
 			    ],
 			    currentIndex: "1",
@@ -312,6 +318,8 @@
 			    tagList: [],
                 confirmCancelDialog: false,
                 deviceIDList:"",
+                SignInFen:"",
+                SignInPer:""
 		    }
 	    },
 	    methods: {
@@ -394,9 +402,12 @@
 				    _this.currentIndex = newKey;
 				    _this.showAD = _this.currentIndex == 1;
 				    _this.isShowVIP = false;
-				    if (_this.$refs.staffPage) {
-					    _this.$refs.staffPage.updateStaffData([], _this.isShowVIP);
-				    }
+				    // if (_this.$refs.staffPage) {
+					 //    _this.$refs.staffPage.updateStaffData([], _this.isShowVIP);
+				    // }
+                    if(_this.currentIndex == 2) {
+                        _this.$refs.nameList.updateUI();
+                    }
 			    }
 			    console.log("selected changed " + newKey);
 		    },
@@ -564,8 +575,15 @@
 				    dataType: 'json',
 				    success: function (data) {
 					    if (data.code === 200) {
-						    _this.departmentSignData = data.data;
-						    //console.log(`departmentSignData:\r\n${JSON.stringify(_this.departmentSignData)}`)
+                            // if(JSON.stringify(data.data) != JSON.stringify(_this.departmentSignData)) {
+                                _this.departmentSignData = data.data;
+                                //console.log(`departmentSignData:\r\n${JSON.stringify(_this.departmentSignData)}`)
+                                if (_this.currentIndex == 1) {
+                                    if (_this.$refs.staffPage) {
+                                        _this.$refs.staffPage.updateDepartmentData(_this.departmentSignData, _this.tagList);
+                                    }
+                                }
+                            // }
 					    }
 				    },
 				    error: function (data) {
@@ -621,29 +639,51 @@
 		    },
 
 		    refreshData() {
-			    // dataInterval = setInterval(function doAnimation() {
-			    _this.getTotalUserCount();
-			    _this.getSigninUserCount();
-			    _this.fetchTag();
-			    //不在产生过人记录时就去更新部门信息
-			    _this.fetTotalSignData();
-			    setTimeout(() => {
-				    if (_this.currentIndex == 1) {
-					    if (_this.$refs.staffPage) {
-						    _this.$refs.staffPage.updateDepartmentData(_this.departmentSignData, _this.tagList);
-					    }
-				    }
-			    }, 500)
+			    //dataInterval = setInterval(function doAnimation() {
+                        _this.fetchTag();
 
-			    // }, 2000);//定时器
+                        _this.getTotalUserCount();
+						_this.getSigninUserCount();
+						//不在产生过人记录时就去更新部门信息
+						_this.fetTotalSignData();
+						//setTimeout(() => {
+						//  if (_this.currentIndex == 1) {
+						//    if (_this.$refs.staffPage) {
+						//	    _this.$refs.staffPage.updateDepartmentData(_this.departmentSignData, _this.tagList);
+						//    }
+						//  }
+						//}, 500)
+			  	//}, 10000);//定时器
 		    },
 
 
 	    },
+        watch: {
+            'staffNum': function(newVal){
+                _this.SignInFen =  _this.signInNum + " / " + newVal;
+                if (newVal == 0) {
+                    _this.SignInPer = `0%`;
+                } else {
+                    let value = Math.floor((_this.signInNum / newVal) * 100);
+                    _this.SignInPer = `${value}%`;
+                }
+            },
+            'signInNum': function(newVal){
+                this.SignInFen = newVal + " / " + _this.staffNum;
+                if (_this.staffNum == 0) {
+                    _this.SignInPer = `0%`;
+                } else {
+                    let value = Math.floor((newVal / _this.staffNum) * 100);
+                    _this.SignInPer = `${value}%`;
+                }
+            }
+        },
 	    computed: {},
 	    filters: {},
 	    created: function () {
-		    _this.refreshData();
+            dataInterval = setInterval(function doAnimation() {
+                _this.refreshData();
+            }, 10000);//定时器
 	    },
 	    mounted: function () {
 		    currentInterval = setInterval(() => {
@@ -652,7 +692,7 @@
 
 		    }, 2000);//定时器
             _this.fetTotalSignData();
-
+            _this.fetchTag();
 	    },
 	    destroyed: function () {
 		    clearInterval(currentInterval);
